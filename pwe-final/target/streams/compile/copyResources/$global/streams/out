@@ -1,0 +1,4 @@
+[0m[[0mdebug[0m] [0mCopy resource mappings: [0m
+[0m[[0mdebug[0m] [0m	(F:\Documents\repo\PWE-Final\pwe-final\conf\application.conf,F:\Documents\repo\PWE-Final\pwe-final\target\scala-2.11\classes\application.conf)[0m
+[0m[[0mdebug[0m] [0m	(F:\Documents\repo\PWE-Final\pwe-final\conf\logback.xml,F:\Documents\repo\PWE-Final\pwe-final\target\scala-2.11\classes\logback.xml)[0m
+[0m[[0mdebug[0m] [0m	(F:\Documents\repo\PWE-Final\pwe-final\conf\routes,F:\Documents\repo\PWE-Final\pwe-final\target\scala-2.11\classes\routes)[0m
