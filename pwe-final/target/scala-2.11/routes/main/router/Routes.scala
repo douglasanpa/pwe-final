@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:F:/Documents/repo/PWE-Final/pwe-final/conf/routes
-// @DATE:Wed Jun 14 21:38:23 BRT 2017
+// @SOURCE:/home/douglas/repo/PWE-Final/pwe-final/conf/routes
+// @DATE:Fri Jun 16 18:56:33 BRT 2017
 
 package router
 
