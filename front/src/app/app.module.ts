@@ -12,13 +12,14 @@ import { HeaderComponent } from './fragments/header/header.component';
 // views
 import { LoginComponent } from './views/login/login.component';
 import { CozinhaComponent } from './views/cozinha/cozinha.component';
+import { GarcomComponent } from './views/garcom/garcom.component';
 
 const appRoutes : Routes=[
   { path: '', component: LoginComponent },
   // { path: 'topic/:id', component: TopicComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cozinha', component: CozinhaComponent },
-  // { path: 'novotopico', component: TopicEditComponent },
+  { path: 'garcom', component: GarcomComponent }
 ];
 
 @NgModule({
@@ -27,7 +28,8 @@ const appRoutes : Routes=[
     LoginComponent,
     AuthComponent,
     HeaderComponent,
-    CozinhaComponent
+    CozinhaComponent,
+    GarcomComponent
   ],
   imports: [
   	// NgbModule.forRoot(),

@@ -1,0 +1,6 @@
+<input type="text">
+<ul>
+  <li *ngFor="let mesa of mesas">
+    Mesa : {{mesa.id}} <button (click)="acessar(mesa.id)" class="btn btn-primary">acessar</button>
+  </li>
+</ul>
