@@ -23,6 +23,7 @@ create table estoque (
 create table funcionario (
   id                            bigint auto_increment not null,
   nome                          varchar(255),
+  senha                         varchar(255),
   constraint pk_funcionario primary key (id)
 );
 
