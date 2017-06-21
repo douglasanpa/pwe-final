@@ -2,6 +2,12 @@ package models;
 
 import javax.persistence.*;
 
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.List;
+
 import com.avaje.ebean.Model;
 import play.data.validation.*;
 
@@ -13,8 +19,22 @@ public class Pedido extends Model {
     @Constraints.Min(10)
     public Long id;
     
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne
     public Cliente cliente;
+
+    public int mesa;
+
+    @Constraints.Required
+    public Funcionario funcionario;
+
+    @Constraints.Required
+    public Date datahora;
+    
+    @Constraints.Required
+    public StatusPedido status;
+
+    @OneToMany(targetEntity = PedidoProduto.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    public List<PedidoProduto> itens;
 
     public static Finder<Long, Pedido> find = new Finder<Long,Pedido>(Pedido.class);
 }
