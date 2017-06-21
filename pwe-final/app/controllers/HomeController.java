@@ -25,6 +25,7 @@ public class HomeController extends Controller {
         
         Funcionario f = new Funcionario();
         f.nome = "Garçom";
+        f.senha = "senha";
         f.permissao = p;
         f.save();
 
