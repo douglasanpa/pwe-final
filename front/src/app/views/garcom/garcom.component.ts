@@ -1,19 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { PedidoEditorComponent} from '../../components/pedido-editor/pedido-editor.component';
 
 @Component({
-  selector: 'app-garcom',
   templateUrl: './garcom.component.html',
   styleUrls: ['./garcom.component.css']
 })
 export class GarcomComponent implements OnInit {
-  mesas=[{id:1},{id:2}];
+  mesa="";
+  editingPedido=false;
+  pedidos=[];
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
   }
-  acessar(id)
+  acessar(pedido)
   {
     
+  }
+  adicionarPedido(mesa)
+  {
+    this.pedidos.push({id:(this.pedidos.length+1),mesa:mesa});
+    this.mesa="";
+    this.editingPedido=true;
   }
 
 }
