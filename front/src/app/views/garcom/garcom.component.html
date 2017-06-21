@@ -1,6 +1,11 @@
-<input type="text">
+<input [(ngModel)]="mesa" type="number">
+<button class="btn btn-primary" [disabled]="(mesa=='')" (click)="adicionarPedido(mesa)">Novo Pedido</button>
 <ul>
-  <li *ngFor="let mesa of mesas">
-    Mesa : {{mesa.id}} <button (click)="acessar(mesa.id)" class="btn btn-primary">acessar</button>
-  </li>
+	<li *ngFor="let pedido of pedidos">
+    	Pedido {{pedido.id}} - mesa: {{pedido.mesa}} <button (click)="acessar(pedido)" class="btn btn-primary">acessar</button>
+	</li>
 </ul>
+
+<pedido-editor *ngIf="editingPedido">
+
+</pedido-editor>

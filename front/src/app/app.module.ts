@@ -13,6 +13,7 @@ import { HeaderComponent } from './fragments/header/header.component';
 import { LoginComponent } from './views/login/login.component';
 import { CozinhaComponent } from './views/cozinha/cozinha.component';
 import { GarcomComponent } from './views/garcom/garcom.component';
+import { PedidoEditorComponent } from './components/pedido-editor/pedido-editor.component';
 
 const appRoutes : Routes=[
   { path: '', component: LoginComponent },
@@ -29,7 +30,8 @@ const appRoutes : Routes=[
     AuthComponent,
     HeaderComponent,
     CozinhaComponent,
-    GarcomComponent
+    GarcomComponent,
+    PedidoEditorComponent
   ],
   imports: [
   	// NgbModule.forRoot(),
