@@ -13,10 +13,12 @@ public class Estoque extends Model {
     @Constraints.Min(10)
     public Long id;
 
+    @Constraints.Required
     public int quantidade;
 
+    @Constraints.Required
+    @ManyToOne
     public Produto produto;
-
 
     public static Finder<Long, Estoque> find = new Finder<Long,Estoque>(Estoque.class);
 }

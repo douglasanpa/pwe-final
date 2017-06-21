@@ -7,6 +7,8 @@ import play.data.validation.*;
 
 import models.*;
 
+import com.fasterxml.jackson.annotation.*;
+
 @Entity
 public class Funcionario extends Model {
     @Id
@@ -16,9 +18,11 @@ public class Funcionario extends Model {
     @Constraints.Required
     public String nome;
 
+    
     @Constraints.Required
     public Permissao permissao;
 
+    @JsonIgnore
     @Constraints.Required
     public String senha;
 
