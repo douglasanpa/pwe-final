@@ -7,6 +7,8 @@ import play.data.validation.*;
 
 import models.*;
 
+import com.fasterxml.jackson.annotation.*;
+
 @Entity
 public class Produto extends Model {
     @Id
@@ -15,7 +17,8 @@ public class Produto extends Model {
 
     @Constraints.Required
     public String nome;
-
+    
+    @JsonIgnore
     public String descricao;
 
     @Constraints.Required

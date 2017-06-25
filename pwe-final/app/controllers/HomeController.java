@@ -3,8 +3,10 @@ package controllers;
 import play.mvc.*;
 import models.*;
 
+import java.util.*;
 import java.util.Date;
 import java.text.DateFormat;
+
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -19,7 +21,8 @@ public class HomeController extends Controller {
      * <code>GET</code> request with a path of <code>/</code>.
      */
     public Result index() {
-        Permissao p = new Permissao();
+
+        /*Permissao p = new Permissao();
         p.nome="Garçom";
         p.save();
         
@@ -50,7 +53,12 @@ public class HomeController extends Controller {
         ped.status = s;
         ped.itens.add(pp);
         ped.save();
-        System.out.println(ped);
+        
+        Estoque e1 = new Estoque();
+        e1.quantidade = 0;
+        e1.produto = prod;
+        e1.save();
+        */
 
 
         return ok(views.html.index.render());
