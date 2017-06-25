@@ -1,11 +1,17 @@
-<input [(ngModel)]="mesa" type="number">
-<button class="btn btn-primary" [disabled]="(mesa=='')" (click)="adicionarPedido(mesa)">Novo Pedido</button>
-<ul>
-	<li *ngFor="let pedido of pedidos">
-    	Pedido {{pedido.id}} - mesa: {{pedido.mesa}} <button (click)="acessar(pedido)" class="btn btn-primary">acessar</button>
-	</li>
-</ul>
+<div class="container">
+	<hr>
+  <form (ngSubmit)="adicionarPedido()" class="panel">
+    <div class="input-group">
 
-<pedido-editor *ngIf="editingPedido">
+      <input class="form-control" name="mesa" [(ngModel)]="mesa" type="number">
+      <span class="input-group-btn">
+			<button type="submit" class="btn btn-primary" [disabled]="(mesa=='')">Novo Pedido</button>
+		</span>
+    </div>
+  </form>
+  <pedido-list></pedido-list>
 
-</pedido-editor>
+  <pedido-editor *ngIf="editingPedido" [mesa]="mesa">
+
+  </pedido-editor>
+</div>
