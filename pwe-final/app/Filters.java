@@ -6,6 +6,8 @@ import play.http.DefaultHttpFilters;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import play.filters.cors.CORSFilter;
+
 /**
  * This class configures filters that run on every request. This
  * class is queried by Play to get a list of filters.
@@ -17,10 +19,15 @@ import javax.inject.Singleton;
 @Singleton
 public class Filters extends DefaultHttpFilters {
 
-    @Inject
+    /*@Inject
     public Filters(CSRFFilter csrfFilter,
                    AllowedHostsFilter allowedHostsFilter,
                    SecurityHeadersFilter securityHeadersFilter) {
         super(csrfFilter, allowedHostsFilter, securityHeadersFilter);
+    }*/
+    @Inject
+    public Filters(CORSFilter corsFilter) {
+        super(corsFilter);
     }
+
 }
