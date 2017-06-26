@@ -1,4 +1,4 @@
-export * from './pedido-editor/pedido-editor.component';
-export * from './pedido-list/pedido-list.component';
-export * from './pedido.service';
-export * from './pedido.model';
+export { ListaPedidoComponent } from './lista-pedido/lista-pedido.component';
+export { NovoPedidoComponent }  from './novo-pedido/novo-pedido.component';
+export { PedidoService }  from './pedido.service';
+export { PedidoModel, NovoPedidoModel }  from './pedido.model';

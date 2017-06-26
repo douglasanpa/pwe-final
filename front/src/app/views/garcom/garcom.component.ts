@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PedidoEditorComponent, PedidoService } from '../../pedido';
+import { ListaPedidoComponent,NovoPedidoComponent, PedidoService }from '../../pedido';
 
 
 @Component({
@@ -7,21 +7,34 @@ import { PedidoEditorComponent, PedidoService } from '../../pedido';
 	styleUrls: ['./garcom.component.css']
 })
 export class GarcomComponent implements OnInit {
-	formmodel = { mesa: "" };
-	mesa = "";
-	editingPedido = false;
-	pedidos = [];
-	constructor() { }
-
-	ngOnInit() {
+	mesa='';
+	pedidos;
+	novo=false;
+	constructor(private pedidoService:PedidoService) 
+	{ 
+		this.atualizarPedidos();
 	}
-	acessar(pedido) {
-
+	
+	ngOnInit() 
+	{
 	}
-	adicionarPedido(mesa) {
-		this.pedidos.push({ id: (this.pedidos.length + 1), mesa: this.mesa, status: { code: 0, text: "na Cozinha" } });
-		this.mesa = "";
-		this.editingPedido = true;
+	
+	novoPedido(mesa)
+	{
+		this.novo=true;
+	}
+	adicionarPedido(pedido)
+	{
+		console.log(pedido);
+		this.pedidoService.adicionarPedido(pedido);
+		this.atualizarPedidos();
+		this.mesa="";
+		this.novo=false;
+		
+	}
+	atualizarPedidos()
+	{
+		this.pedidos=this.pedidoService.getPedidos();
 	}
 
 }

@@ -9,26 +9,18 @@ import { Routes, RouterModule } from '@angular/router';
 import {
 	LoginComponent,
 	CozinhaComponent,
-	GarcomComponent
+	GarcomComponent,
+	PedidoComponent
 } from './views';
 
 //components
 import { HeaderComponent } from './fragments/header/header.component';
-import { AuthComponent } from './auth/auth.component';
-import {
-	PedidoEditorComponent,
-	PedidoListComponent,
-	PedidoService
-} from './pedido';
+import { ListaPedidoComponent } from './pedido';
+import { NovoPedidoComponent } from './pedido/novo-pedido/novo-pedido.component';
 
-import { AuthService } from './auth/auth.service';
-import {
-	ProdutoListComponent,
-	PedidoProdutoListComponent,
-	ProdutoSelectorComponent,
-	ProdutoService
-} from './produto';
-import { PedidoProdutoComponent } from './produto/pedido-produto/pedido-produto.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import{ PedidoService } from './pedido';
+import{ ProdutoService } from './produto';
 
 const appRoutes: Routes = [
 	{ path: '', component: LoginComponent },
@@ -41,17 +33,14 @@ const appRoutes: Routes = [
 @NgModule({
 	declarations: [
 		AppComponent,
-		LoginComponent,
-		AuthComponent,
 		HeaderComponent,
+		LoginComponent,
 		CozinhaComponent,
 		GarcomComponent,
-		PedidoEditorComponent,
-		PedidoListComponent,
-		ProdutoListComponent,
-		PedidoProdutoListComponent,
-		ProdutoSelectorComponent,
-		PedidoProdutoComponent
+		ListaPedidoComponent,
+		PedidoComponent,
+		NovoPedidoComponent,
+		FilterPipe
 	],
 	imports: [
 		BrowserModule,
@@ -59,11 +48,7 @@ const appRoutes: Routes = [
 		HttpModule,
 		RouterModule.forRoot(appRoutes)
 	],
-	providers: [
-		AuthService,
-		PedidoService,
-		ProdutoService
-	],
+	providers: [PedidoService, ProdutoService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

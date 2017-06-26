@@ -1,24 +1,20 @@
-export class Pedido
+export class PedidoModel 
 {
-    id:Number;
-    
-    cliente;
-
-    mesa:Number;
-
-    funcionario;
-
-    datahora:String;
-    
-    status;
-
-    itens : Array<String>;
+	id:Number;
+	mesa:Number;
+	status:String;
 }
 
+export class NovoPedidoModel 
+{
+	mesa:Number;
+	status:String;
+	items;
+	constructor()
+	{
+		this.mesa=0;
+		this.status="indefinido";
+		this.items=[];
+	}
 
-export let PEDIDOSMOCK: Pedido[] = [
-  { id: 1, mesa: 1, cliente:null, funcionario:null, datahora:"1-1-1111 11:11:11", status:{code:0,text:"Na cozinha"}, itens:[] },
-  { id: 2, mesa: 3, cliente:null, funcionario:null, datahora:"1-1-1111 11:11:11", status:{code:0,text:"Na cozinha"}, itens:[] },
-  { id: 3, mesa: 5, cliente:null, funcionario:null, datahora:"1-1-1111 11:11:11", status:{code:1,text:"Pronto para servir"}, itens:[] },
-  { id: 4, mesa: 2, cliente:null, funcionario:null, datahora:"1-1-1111 11:11:11", status:{code:0,text:"Na cozinha"}, itens:[] },
-];
+}

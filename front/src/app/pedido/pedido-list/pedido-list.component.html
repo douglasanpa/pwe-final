@@ -1,7 +1,0 @@
-<div class="panel panel-default" *ngFor="let pedido of pedidos">
-  <div class="panel-body">
-    <label>Pedido {{pedido.id}} - mesa: {{pedido.mesa}} status
-		<span class="badge" [ngClass]="['alert-info','alert-danger'][pedido.status.code]">{{pedido.status.text}}</span>
-	</label>
-  </div>
-</div>

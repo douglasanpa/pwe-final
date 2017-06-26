@@ -1,0 +1,36 @@
+<div id="NovoPedidoScreen">
+	<div id="NovoPedido">
+		<form (ngSubmit)="salvar()">
+			<div class="form-group">
+				<label>Mesa</label>	
+				<input type="number" [(ngModel)]="mesa" name="mesa">
+			</div>
+			
+			<div class="form-group">
+				<label>Itens</label>	
+				<input type="text" [(ngModel)]="searchitem" name="searchitem">
+			</div>
+			
+			<div class="lista-items">
+				<div *ngFor="let item of items|filter:searchitem:'nome'" >
+					{{item.nome}}
+					<a class="btn btn-primary" (click)="add(item)">Adicionar</a>
+				</div>
+			</div>
+
+			<h3>Items</h3>
+		
+			<div>
+				<div *ngFor="let item of pedido.items">
+					<a class="btn btn-default" (click)="addQt(item,-1)">-</a>
+					{{item.item.nome}} quantidade:{{item.quantidade}}
+					<a class="btn btn-default" (click)="addQt(item,1)">+</a>
+				</div>
+			</div>
+			
+			<button class="btn btn-primary">Adicionar</button>
+		
+		</form>
+		<button (click)="cancelar()" class="btn btn-primary">cancelar</button>
+	</div>
+</div>
