@@ -26,6 +26,9 @@ public class Funcionario extends Model {
     @Constraints.Required
     public String senha;
 
+    @JsonIgnore
+    public String hash;    
+
     public static Finder<Long, Funcionario> find = new Finder<Long,Funcionario>(Funcionario.class);
 
 }
