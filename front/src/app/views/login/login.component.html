@@ -1,16 +1,16 @@
 
 <div class="container">
 	<div class="centerform">
-		<form id="loginForm">
+		<form (ngSubmit)="confirm()" id="loginForm" >
 			<div class="form-group">
-				<label for="user">Usuário</label>
-				<input [(ngModel)]="user" class="form-control" type="text" name="user" id="user">
+				<label for="usuario">Usuário</label>
+				<input [disabled]="loading" [(ngModel)]="model.usuario" class="form-control" type="text" name="usuario" id="usuario">
 			</div>
 			<div class="form-group">
-				<label for="pass">Senha</label>
-				<input [(ngModel)]="pass" class="form-control" type="password" name="pass" id="pass">
+				<label for="senha">Senha</label>
+				<input [disabled]="loading" [(ngModel)]="model.senha" class="form-control" type="password" name="senha" id="senha">
 			</div>
-			<button (click)="confirm()" type="submit" class="btn btn-primary">Login</button>
+			<button [disabled]="loading" type="submit" class="btn btn-primary">Login</button>
 		</form>
 	</div>
 </div>
