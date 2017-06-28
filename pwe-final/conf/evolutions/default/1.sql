@@ -17,6 +17,7 @@ create table cliente (
 create table funcionario (
   id                            bigint auto_increment not null,
   nome                          varchar(255),
+  permissao_id                  bigint,
   senha                         varchar(255),
   hash                          varchar(255),
   constraint pk_funcionario primary key (id)
@@ -59,6 +60,9 @@ create table status_pedido (
   constraint pk_status_pedido primary key (id)
 );
 
+alter table funcionario add constraint fk_funcionario_permissao_id foreign key (permissao_id) references permissao (id) on delete restrict on update restrict;
+create index ix_funcionario_permissao_id on funcionario (permissao_id);
+
 alter table pedido add constraint fk_pedido_cliente_id foreign key (cliente_id) references cliente (id) on delete restrict on update restrict;
 create index ix_pedido_cliente_id on pedido (cliente_id);
 
@@ -70,6 +74,9 @@ create index ix_pedido_produto_produto_id on pedido_produto (produto_id);
 
 
 # --- !Downs
+
+alter table funcionario drop foreign key fk_funcionario_permissao_id;
+drop index ix_funcionario_permissao_id on funcionario;
 
 alter table pedido drop foreign key fk_pedido_cliente_id;
 drop index ix_pedido_cliente_id on pedido;

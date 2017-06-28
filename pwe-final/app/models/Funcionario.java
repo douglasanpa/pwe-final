@@ -18,7 +18,7 @@ public class Funcionario extends Model {
     @Constraints.Required
     public String nome;
 
-    
+    @ManyToOne
     @Constraints.Required
     public Permissao permissao;
 
