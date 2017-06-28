@@ -15,10 +15,10 @@
       </table>
         <button class="pull-right btn btn-default" (click)="pronto(pedido)">Pronto para entrega</button>
      </div>
-    <span class='pull-right' *ngIf="type=='garcon'"> 
+    <span class='pull-right' *ngIf="type=='garcon' || type=='central'">
     	<span class="badge" [ngClass]="getClass(pedido.status.id)">{{pedido.status.nome|uppercase}}</span>
-    	<button *ngIf="pedido.status.id==2" class="btn btn-warning" (click)="entregar(pedido)">Entregar</button>
-    	<button *ngIf="pedido.status.id==3" class="btn btn-success" (click)="fecharConta(pedido)">Fechar Conta</button>
+    	<button *ngIf="pedido.status.id=='2'" class="btn btn-warning" (click)="entregar(pedido)">Entregar</button>
+    	<button *ngIf="pedido.status.id=='3'" class="btn btn-success" (click)="fecharConta(pedido)">Fechar Conta</button>
     </span>
   </div>
   </div>
