@@ -8,6 +8,7 @@ import java.util.Date;
 import java.text.DateFormat;
 
 import play.libs.Json;
+import com.fasterxml.jackson.databind.JsonNode; 
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -36,8 +37,26 @@ public class Pedidos extends Controller {
     public Result salvar() {
         return ok();
     }
-    public Result update() {
-        return ok();
+    
+    public Result atualiza() {
+        try {
+            JsonNode json = request().body().asJson();
+        Pedido p = Pedido.find
+            .where()
+            .eq("id", json.get("id").asText())
+            .findUnique();
+        StatusPedido st = StatusPedido.find
+            .where()
+            .eq("id", p.status.id+1)
+            .findUnique();
+            p.status = st;
+            p.save();
+            return ok("Pedido atualizado");
+        } catch (Exception e) {
+            return status(400,"Pedido não foi atualizado");
+        }
+        
+        
     }
 
     public Result all() {

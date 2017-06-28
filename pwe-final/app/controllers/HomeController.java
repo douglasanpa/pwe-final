@@ -127,7 +127,7 @@ public class HomeController extends Controller {
         if(pr==null){
             prod.nome = "pizza de muçarela";
             prod.descricao = "muçarela";
-            prod.preco = 10;
+            prod.preco = 30;
             prod.estoque = 10;
             prod.save();
             
@@ -140,6 +140,18 @@ public class HomeController extends Controller {
             ped.status = s;
             ped.itens.add(ppr);
             ped.save();
+        }
+
+        Produto pr2 = Produto.find.where()
+            .eq("nome", "Refrigerante")
+            .findUnique();
+        Produto prod2 = new Produto();
+        if(pr2==null){
+            prod2.nome = "Refrigerante";
+            prod2.descricao = "Refrigerante 2L";
+            prod2.preco = 7;
+            prod2.estoque = 7;
+            prod2.save();
         }
 
         
