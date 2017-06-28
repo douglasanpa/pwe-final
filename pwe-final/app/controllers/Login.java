@@ -67,7 +67,7 @@ public class Login extends Controller {
             response().discardCookie("user");
             return status(401,"Login inválido");    
         }else{
-            return ok("OK");
+            return ok(Json.toJson(f));
         }
     }
     private String getHash(){
