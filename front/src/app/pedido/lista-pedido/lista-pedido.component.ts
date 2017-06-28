@@ -18,20 +18,22 @@ export class ListaPedidoComponent implements OnInit
 
 	pronto(pedido)
 	{
-		console.log(pedido);
 		this.pedidoService.atualizaPedido(pedido).subscribe();
 	}
 	ngOnInit() { }
+	
 	getClass(id)
 	{
 		return ['alert-warning','alert-success','alert-danger','alert-info'][id];
 	}
-	entregar()
+	
+	entregar(pedido)
 	{
-
+		this.pronto(pedido);
 	}
-	fecharConta()
-	{
 
+	fecharConta(pedido)
+	{
+		this.pronto(pedido);
 	}
 }

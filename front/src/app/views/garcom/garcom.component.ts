@@ -24,18 +24,17 @@ export class GarcomComponent implements OnInit {
 	{
 		this.novo=true;
 	}
+	
 	adicionarPedido(pedido)
 	{
 		console.log(pedido);
-		this.pedidoService.adicionarPedido(pedido);
-		this.atualizarPedidos();
+		this.pedidoService.adicionarPedido(pedido).subscribe((data)=>this.atualizarPedidos());
 		this.mesa="";
 		this.novo=false;
-		
 	}
 	atualizarPedidos()
 	{
-		this.pedidos=this.pedidoService.getPedidos();
+		this.pedidoService.getPedidos().subscribe((data)=>this.pedidos=data);
 	}
 
 }
