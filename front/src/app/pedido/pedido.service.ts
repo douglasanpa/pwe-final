@@ -4,14 +4,16 @@ import {PedidoModel,NovoPedidoModel} from './';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
+
 @Injectable()
 export class PedidoService {
 
 	constructor(private http: Http) {}
 	pedidos = new Subject();
-	getPedidos()
+
+	getPedidos(type)
 	{	
-		this.http.get("http://localhost:9000/pedido")
+		this.http.get("http://localhost:9000/pedido/"+type)
 				 .map(
 				 	(response:Response)=>response.json()
 				 	)

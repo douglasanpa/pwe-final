@@ -13,7 +13,7 @@ export class GarcomComponent implements OnInit {
 	novo=false;
 	constructor(private pedidoService:PedidoService) 
 	{ 
-		this.atualizarPedidos();
+		
 	}
 	
 	ngOnInit() 
@@ -24,17 +24,12 @@ export class GarcomComponent implements OnInit {
 	{
 		this.novo=true;
 	}
-	
+
 	adicionarPedido(pedido)
 	{
 		console.log(pedido);
-		this.pedidoService.adicionarPedido(pedido).subscribe((data)=>this.atualizarPedidos());
+		this.pedidoService.adicionarPedido(pedido).subscribe();
 		this.mesa="";
 		this.novo=false;
 	}
-	atualizarPedidos()
-	{
-		this.pedidoService.getPedidos().subscribe((data)=>this.pedidos=data);
-	}
-
 }

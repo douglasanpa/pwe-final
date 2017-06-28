@@ -18,7 +18,7 @@ export class AuthService
 		// 	}
 		// });
 	}
-	
+	permissionId=-1;
 	private parseResponse(response: Response)
 	{
 		return response.json();
@@ -30,6 +30,7 @@ export class AuthService
 								.map(this.parseResponse);
 		observer.subscribe(
 			(data)=>{
+				this.permissionId=data.permissao.id;
 				this.router.navigate(["/", this.rotas[data.permissao.id]]);
 			});
 		return observer;

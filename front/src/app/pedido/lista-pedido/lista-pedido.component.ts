@@ -13,16 +13,17 @@ export class ListaPedidoComponent implements OnInit
 
 	constructor(private pedidoService: PedidoService) 
 	{ 
-		this.pedidoService.getPedidos().subscribe((data)=>{console.log(data);this.model=data;});
+		
 	}
 
 	pronto(pedido)
 	{
 		this.pedidoService.atualizaPedido(pedido)
 						  .subscribe((data)=>{this.pedidoService.update();});
-
 	}
-	ngOnInit() { }
+	ngOnInit() { 
+		this.pedidoService.getPedidos(this.type).subscribe((data)=>{console.log(data);this.model=data;});
+	}
 	
 	getClass(id)
 	{
