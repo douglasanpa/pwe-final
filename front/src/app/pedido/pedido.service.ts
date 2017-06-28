@@ -11,10 +11,12 @@ export class PedidoService {
 	{
 		return this.http.get("http://localhost:9000/pedido").map((response:Response)=>response.json());
 	}
+	
 	atualizaPedido(pedido)
 	{
-		return this.http.post("http://localhost:9000/atualizapedido", pedido);	
+		return this.http.post("http://localhost:9000/pedido/atualiza", pedido);
 	}
+
 	adicionarPedido(pedido)
 	{
 		return this.http.post("http://localhost:9000/pedido", pedido);
