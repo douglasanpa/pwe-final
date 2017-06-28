@@ -22,7 +22,7 @@ export class NovoPedidoComponent implements OnInit
 	
 	searchitem="";
 	items=[];
-	
+	loading=false;
 	constructor(private produtoService:ProdutoService) { }
 
 	addQt(item, qt)
@@ -54,10 +54,12 @@ export class NovoPedidoComponent implements OnInit
 	}
 
 	ngOnInit() {
+		this.loading=true;
 		this.produtoService.listarProdutos()
 		.subscribe((data)=> {
 			console.log(data);
 			this.items=data;
+			this.loading=false;
 		});
 	}
 	
@@ -70,9 +72,10 @@ export class NovoPedidoComponent implements OnInit
 	{
 		for (let i =0 ;i< this.pedido.items.length;i++)
 		{
-			if(this.pedido.items[i].id==item.id)
+			if(this.pedido.items[i].item.id==item.item.id)
 			{
-				 this.pedido.items.splice(i,1);
+				item.item.selected=false;
+				this.pedido.items.splice(i,1);
 				break;
 			}
 		}

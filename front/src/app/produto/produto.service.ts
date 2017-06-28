@@ -9,7 +9,7 @@ export class ProdutoService
 
 	listarProdutos()
 	{
-		return this.http.get("http://localhost:9000/produto")
+		return this.http.get("http://localhost:9000/produto/estoque")
 		.map((response: Response) => response.json());;
 	}
 }
