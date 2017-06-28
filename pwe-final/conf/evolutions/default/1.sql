@@ -30,6 +30,7 @@ create table pedido (
   mesa                          integer,
   datahora                      datetime(6),
   status_id                     bigint,
+  valortotal                    double,
   constraint pk_pedido primary key (id)
 );
 

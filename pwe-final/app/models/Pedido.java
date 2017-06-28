@@ -34,6 +34,8 @@ public class Pedido extends Model {
     @Constraints.Required
     public StatusPedido status;
 
+    public double valortotal;
+
     @OneToMany(targetEntity = PedidoProduto.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<PedidoProduto> itens;
 

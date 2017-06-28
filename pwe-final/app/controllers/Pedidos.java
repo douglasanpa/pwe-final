@@ -35,7 +35,7 @@ public class Pedidos extends Controller {
             ped.mesa = json.get("mesa").asInt();
             ped.datahora = new Date();
             ped.status = s;
-            
+            double valortotal = 0;
             for ( JsonNode json2 : json.get("items")) {
                 Produto prod = Produto.find
                     .where()
@@ -45,11 +45,12 @@ public class Pedidos extends Controller {
                 ppr.quantidade = json2.get("quantidade").asInt();
                 ppr.produto = prod;
                 ped.itens.add(ppr);
+                valortotal +=  ppr.quantidade * prod.preco;
                 prod.estoque = prod.estoque - json2.get("quantidade").asInt();
                 prod.save();
             }
             
-            
+            ped.valortotal = valortotal;
             ped.save();
             return ok("Pedido atualizado");
         } catch (Exception e) {
@@ -115,11 +116,12 @@ public class Pedidos extends Controller {
             return ok(Json.toJson(peds));
         }else if(tipo.equals("central")){
             StatusPedido st = StatusPedido.find.where()
-            .eq("id", "3")
+            .eq("id", "4")
             .findUnique();
             List<Pedido> peds = Pedido.find
             .where()
-            .eq("status", st)
+            .ne("status", st)
+            .orderBy("status desc")
             .findList();
             return ok(Json.toJson(peds));
         }
