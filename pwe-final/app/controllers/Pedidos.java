@@ -16,9 +16,6 @@ import com.fasterxml.jackson.databind.JsonNode;
  */
 public class Pedidos extends Controller {
 
-    //central emitir nota fiscal
-    
-
     public Result estoque() {
         List<Produto> prods = Produto.find
             .where()
@@ -116,7 +113,15 @@ public class Pedidos extends Controller {
             .ne("status", st)
             .findList();
             return ok(Json.toJson(peds));
-        }
+        }else if(tipo.equals("central")){
+            StatusPedido st = StatusPedido.find.where()
+            .eq("id", "3")
+            .findUnique();
+            List<Pedido> peds = Pedido.find
+            .where()
+            .eq("status", st)
+            .findList();
+            return ok(Json.toJson(peds));
         
         return status(400,"Requisição inválida");
     }
