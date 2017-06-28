@@ -13,7 +13,7 @@ import play.data.Form;          //Para pegar GET/POST
 import java.security.*;
 import java.text.*;
 
-
+import play.libs.Json;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -40,7 +40,7 @@ public class Login extends Controller {
             f.hash = hash;
             f.save();
             response().setCookie("user", hash, 3600);
-            return ok("OK");
+            return ok(Json.toJson(f));
         }
     }
     public Result logout() {
