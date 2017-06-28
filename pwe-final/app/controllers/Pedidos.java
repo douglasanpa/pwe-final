@@ -122,6 +122,7 @@ public class Pedidos extends Controller {
             .eq("status", st)
             .findList();
             return ok(Json.toJson(peds));
+        }
         
         return status(400,"Requisição inválida");
     }
