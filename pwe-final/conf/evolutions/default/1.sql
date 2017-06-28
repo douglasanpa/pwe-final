@@ -29,6 +29,7 @@ create table pedido (
   cliente_id                    bigint,
   mesa                          integer,
   datahora                      datetime(6),
+  status_id                     bigint,
   constraint pk_pedido primary key (id)
 );
 
@@ -68,6 +69,9 @@ create index ix_funcionario_permissao_id on funcionario (permissao_id);
 alter table pedido add constraint fk_pedido_cliente_id foreign key (cliente_id) references cliente (id) on delete restrict on update restrict;
 create index ix_pedido_cliente_id on pedido (cliente_id);
 
+alter table pedido add constraint fk_pedido_status_id foreign key (status_id) references status_pedido (id) on delete restrict on update restrict;
+create index ix_pedido_status_id on pedido (status_id);
+
 alter table pedido_produto add constraint fk_pedido_produto_pedido_id foreign key (pedido_id) references pedido (id) on delete restrict on update restrict;
 create index ix_pedido_produto_pedido_id on pedido_produto (pedido_id);
 
@@ -82,6 +86,9 @@ drop index ix_funcionario_permissao_id on funcionario;
 
 alter table pedido drop foreign key fk_pedido_cliente_id;
 drop index ix_pedido_cliente_id on pedido;
+
+alter table pedido drop foreign key fk_pedido_status_id;
+drop index ix_pedido_status_id on pedido;
 
 alter table pedido_produto drop foreign key fk_pedido_produto_pedido_id;
 drop index ix_pedido_produto_pedido_id on pedido_produto;

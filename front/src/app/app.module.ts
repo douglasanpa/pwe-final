@@ -26,7 +26,6 @@ import { AuthService } from './auth/auth.service';
 
 const appRoutes: Routes = [
 	{ path: '', component: LoginComponent },
-	// { path: 'topic/:id', component: TopicComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'cozinha', component: CozinhaComponent },
 	{ path: 'central', component: CentraladminComponent },
