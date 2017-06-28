@@ -31,7 +31,7 @@
 				</div>
 			</div>
 			
-			<button class="btn btn-success pull-right">Salvar</button>
+			<button [disabled]="pedido.items.length<1" class="btn btn-success pull-right">Salvar</button>
 		
 		</form>
 		</div>

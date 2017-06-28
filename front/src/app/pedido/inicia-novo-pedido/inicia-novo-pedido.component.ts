@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input} from '@angular/core';
 import { ListaPedidoComponent, NovoPedidoComponent, PedidoService }from '../../pedido';
 @Component({
   selector: 'inicia-novo-pedido',
@@ -9,9 +9,12 @@ export class IniciaNovoPedidoComponent implements OnInit {
 	mesa='';
 	pedidos;
 	novo=false;
+	@Input('fixedtable') fixedtable='';
 	constructor(private pedidoService:PedidoService) {}
 	
-	ngOnInit() {}
+	ngOnInit() {
+		this.mesa = this.fixedtable;
+	}
 	
 	novoPedido(mesa)
 	{
@@ -22,7 +25,8 @@ export class IniciaNovoPedidoComponent implements OnInit {
 	{
 		this.pedidoService.adicionarPedido(pedido).subscribe((data)=>{this.pedidoService.update();});
 		this.mesa="";
-		this.novo=false;
+		if(this.fixedtable=="")
+			this.novo=false;
 	}
 
 }
