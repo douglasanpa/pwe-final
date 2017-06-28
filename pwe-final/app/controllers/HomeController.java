@@ -83,12 +83,39 @@ public class HomeController extends Controller {
         }
         
         StatusPedido ss = StatusPedido.find.where()
-            .eq("nome", "Aberto")
+            .eq("nome", "Enviado para Cozinha")
             .findUnique();
         StatusPedido s = new StatusPedido();
         if(ss==null){
-            s.nome = "Aberto";
+            s.nome = "Enviado para Cozinha";
             s.save();
+        }
+
+        StatusPedido ss2 = StatusPedido.find.where()
+            .eq("nome", "Pronto para entrega")
+            .findUnique();
+        StatusPedido s2 = new StatusPedido();
+        if(ss2==null){
+            s2.nome = "Pronto para entrega";
+            s2.save();
+        }
+
+        StatusPedido ss3 = StatusPedido.find.where()
+            .eq("nome", "Enviado para pagamento")
+            .findUnique();
+        StatusPedido s3 = new StatusPedido();
+        if(ss3==null){
+            s3.nome = "Enviado para pagamento";
+            s3.save();
+        }
+
+        StatusPedido ss4 = StatusPedido.find.where()
+            .eq("nome", "Concluido")
+            .findUnique();
+        StatusPedido s4 = new StatusPedido();
+        if(ss4==null){
+            s4.nome = "Concluido";
+            s4.save();
         }
 
         Produto pr = Produto.find.where()
@@ -126,7 +153,7 @@ public class HomeController extends Controller {
         // e1.save();
         
 
-        return ok(views.html.index.render());
+        return status(401,"UTILIZE O FRONT-END");
     }
 
 }
