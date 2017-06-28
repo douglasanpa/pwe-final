@@ -1,6 +1,8 @@
 <div *ngIf="model">
   <h4>Lista de Pedidos <button (click)="atualizarPedidos()" class="btn btn-primary"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Atualizar</button></h4>
+  
   <div class="panel panel-default" *ngFor="let pedido of model|filter:filterId:'mesa':filterNegate" >
+  
   <div class="panel-body">
     <h3> {{pedido.id}}# Mesa: {{pedido.mesa}} </h3>
      <div *ngIf="type=='cozinha'">
@@ -15,6 +17,9 @@
       </table>
         <button class="pull-right btn btn-default" (click)="pronto(pedido)">Pronto para entrega</button>
      </div>
+     <span *ngIf="pedido.status.id=='3'">
+       {{ pedido.valortotal | currency }}
+     </span>
     <span class='pull-right' *ngIf="type=='garcon' || type=='central'">
     	<span class="badge" [ngClass]="getClass(pedido.status.id)">{{pedido.status.nome|uppercase}}</span>
     	<button *ngIf="pedido.status.id=='2'" class="btn btn-warning" (click)="entregar(pedido)">Entregar</button>
