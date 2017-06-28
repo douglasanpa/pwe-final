@@ -33,11 +33,23 @@ public class Pedidos extends Controller {
         return ok(Json.toJson(prods));
     }
 
+    public Result salvar() {
+        return ok();
+    }
+    public Result update() {
+        return ok();
+    }
+
     public Result all() {
         Login l = new Login();
+        StatusPedido st = StatusPedido.find.where()
+            .eq("nome", "Concluido")
+            .findUnique();
         if(l.isLogged()){
             List<Pedido> peds = Pedido.find
-            .all();
+            .where()
+            .ne("status", st)
+            .findList();
 
         return ok(Json.toJson(peds));
         }else{
