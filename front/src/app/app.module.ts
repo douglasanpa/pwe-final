@@ -10,7 +10,8 @@ import {
 	LoginComponent,
 	CozinhaComponent,
 	GarcomComponent,
-	PedidoComponent
+	PedidoComponent,
+ 	CentraladminComponent
 } from './views';
 
 //components
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
 	// { path: 'topic/:id', component: TopicComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'cozinha', component: CozinhaComponent },
+	{ path: 'central', component: CentraladminComponent },
 	{ path: 'garcom', component: GarcomComponent }
 ];
 
@@ -40,7 +42,8 @@ const appRoutes: Routes = [
 		ListaPedidoComponent,
 		PedidoComponent,
 		NovoPedidoComponent,
-		FilterPipe
+		FilterPipe,
+		CentraladminComponent
 	],
 	imports: [
 		BrowserModule,

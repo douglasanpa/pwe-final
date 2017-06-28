@@ -2,16 +2,13 @@
 	<hr>
     <form (ngSubmit)="novoPedido(mesa)">
     	<div class="input-group">
-    		
-        <input class="form-control" type="number" [(ngModel)]="mesa" name="mesa" id="mesa">
-        
-        <span class="input-group-btn">
-        	<button class="btn btn-primary" [disabled]="mesa==''">Novo Pedido</button>
-        </span>
+            <input class="form-control" type="number" [(ngModel)]="mesa" name="mesa" id="mesa">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" [disabled]="mesa==''">Novo Pedido</button>
+            </span>
     	</div>
     </form>
     <h4>Lista de Pedidos <button (click)="atualizarPedidos()" class="btn btn-primary">Atualizar</button></h4>
     <lista-pedido [type]="'garcon'"></lista-pedido>
-    
     <novo-pedido *ngIf="novo" [mesa]="mesa" (onSave)="adicionarPedido($event)" (onCancel)="novo=false;mesa=''"></novo-pedido>
 </div>

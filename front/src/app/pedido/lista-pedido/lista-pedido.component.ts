@@ -6,7 +6,8 @@ import { PedidoService } from '../pedido.service';
 	templateUrl: './lista-pedido.component.html',
 	styleUrls: ['./lista-pedido.component.css']
 })
-export class ListaPedidoComponent implements OnInit {
+export class ListaPedidoComponent implements OnInit
+{
 	model;
 	@Input() type;
 
@@ -16,11 +17,14 @@ export class ListaPedidoComponent implements OnInit {
 		console.log(this.model);
 		setInterval(()=>{this.model = pedidoService.getPedidos();},100);
 	}
-	pronto(pedido){
+
+	pronto(pedido)
+	{
 		this.pedidoService.atualizaPedido(pedido);
 	}
 	ngOnInit() { }
-	getClass(id){
+	getClass(id)
+	{
 		return ['alert-warning','alert-success','alert-danger','alert-info'][id];
 	}
 	entregar()
