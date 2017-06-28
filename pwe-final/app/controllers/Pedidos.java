@@ -35,7 +35,35 @@ public class Pedidos extends Controller {
     }
 
     public Result salvar() {
-        return ok();
+        try {
+            JsonNode json = request().body().asJson();
+            StatusPedido s = StatusPedido.find.where()
+            .eq("id", 1L)
+            .findUnique();
+            Pedido ped = new Pedido();
+            ped.mesa = json.get("mesa").asInt();
+            ped.datahora = new Date();
+            ped.status = s;
+            
+            for ( JsonNode json2 : json.get("items")) {
+                Produto prod = Produto.find
+                    .where()
+                    .eq("id", json2.get("item").get("id").asText())
+                    .findUnique();
+                PedidoProduto ppr = new PedidoProduto();
+                ppr.quantidade = json2.get("quantidade").asInt();
+                ppr.produto = prod;
+                ped.itens.add(ppr);
+                prod.estoque = prod.estoque - json2.get("quantidade").asInt();
+                prod.save();
+            }
+            
+            
+            ped.save();
+            return ok("Pedido atualizado");
+        } catch (Exception e) {
+            return status(400,"Pedido não foi inserido");
+        }
     }
     
     public Result atualiza() {
@@ -55,8 +83,6 @@ public class Pedidos extends Controller {
         } catch (Exception e) {
             return status(400,"Pedido não foi atualizado");
         }
-        
-        
     }
 
     public Result all() {
