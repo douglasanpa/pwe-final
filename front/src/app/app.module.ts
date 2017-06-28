@@ -20,8 +20,9 @@ import { ListaPedidoComponent } from './pedido';
 import { NovoPedidoComponent } from './pedido/novo-pedido/novo-pedido.component';
 
 import { FilterPipe } from './pipes/filter.pipe';
-import{ PedidoService } from './pedido';
-import{ ProdutoService } from './produto';
+import { PedidoService } from './pedido';
+import { ProdutoService } from './produto';
+import { AuthService } from './auth/auth.service';
 
 const appRoutes: Routes = [
 	{ path: '', component: LoginComponent },
@@ -51,7 +52,11 @@ const appRoutes: Routes = [
 		HttpModule,
 		RouterModule.forRoot(appRoutes)
 	],
-	providers: [PedidoService, ProdutoService],
+	providers: [
+		AuthService, 
+		PedidoService, 
+		ProdutoService
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

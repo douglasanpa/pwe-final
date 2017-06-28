@@ -1,20 +1,29 @@
 <div *ngIf="model">
-<div *ngFor="let pedido of model" >
+<div class="panel panel-default" *ngFor="let pedido of model" >
+<div class="panel-body">
+    
+  
+
   <span> Mesa: {{pedido.mesa}} </span>
  
    <span *ngIf="type=='cozinha'">
     <h4>Itens</h4>
-   	  <div *ngFor="let item of pedido.items " >{{item.item.nome}}</div>
+   	  <div *ngFor="let item of pedido.items " >
+        nome:
+        {{item.item.nome}} 
+        qt:
+        {{item.quantidade}}
+      </div>
 
-      <button class="btn btn-default" (click)="pronto(pedido)">Pronto para entrega</button>
+      <button class="pull-right btn btn-default" (click)="pronto(pedido)">Pronto para entrega</button>
    </span>
  
-  <span *ngIf="type=='garcon'"> 
-  	Status: <span class="badge" [ngClass]="getClass(pedido.status.code)">{{pedido.status.text|uppercase}}</span>
+  <span class='pull-right' *ngIf="type=='garcon'"> 
+  	<span class="badge" [ngClass]="getClass(pedido.status.code)">{{pedido.status.text|uppercase}}</span>
   	<button *ngIf="pedido.status.code==2" class="btn btn-primary" (click)="entregar(pedido)">Entregar</button>
   	<button *ngIf="pedido.status.code==3" class="btn btn-primary" (click)="fecharConta(pedido)">Fechar Conta</button>
   </span>
 
-  
+</div>
 </div>
 </div>

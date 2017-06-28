@@ -4,11 +4,12 @@
     	<div class="input-group">
             <input class="form-control" type="number" [(ngModel)]="mesa" name="mesa" id="mesa">
             <span class="input-group-btn">
-                <button class="btn btn-primary" [disabled]="mesa==''">Novo Pedido</button>
+                <button class="btn btn-primary" [disabled]="mesa==''">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Novo Pedido</button>
             </span>
     	</div>
     </form>
-    <h4>Lista de Pedidos <button (click)="atualizarPedidos()" class="btn btn-primary">Atualizar</button></h4>
+    <h4>Lista de Pedidos <button (click)="atualizarPedidos()" class="btn btn-primary"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Atualizar</button></h4>
     <lista-pedido [type]="'garcon'"></lista-pedido>
     <novo-pedido *ngIf="novo" [mesa]="mesa" (onSave)="adicionarPedido($event)" (onCancel)="novo=false;mesa=''"></novo-pedido>
 </div>

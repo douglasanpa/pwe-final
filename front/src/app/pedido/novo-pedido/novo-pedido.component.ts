@@ -33,8 +33,7 @@ export class NovoPedidoComponent implements OnInit
 		}
 		if(item.quantidade < 1) {
 			this.removerItem(item)
-		}
-		
+		}	
 	}
 
 	add(item)

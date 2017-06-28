@@ -6,10 +6,10 @@ import {PedidoModel,NovoPedidoModel} from './';
 export class PedidoService {
 
   constructor(private http: Http) { 
-    this.adicionarPedido({mesa:1,status:{code:1,text:"Na cozinha"}});
-    this.adicionarPedido({mesa:4,status:{code:2,text:"Pronto para entrega"}});
-    this.adicionarPedido({mesa:3,status:{code:3,text:"Entregue"}});
-    this.adicionarPedido({mesa:6,status:{code:4,text:"Fechado"}});
+    this.adicionarPedido({mesa:1,items:[{quantidade:1,item:{id:1,nome:"Pizza"}}],status:{code:1,text:"Na cozinha"}});
+    this.adicionarPedido({mesa:4,items:[{quantidade:1,item:{id:1,nome:"Pizza"}}],status:{code:2,text:"Pronto para entrega"}});
+    this.adicionarPedido({mesa:3,items:[{quantidade:1,item:{id:1,nome:"Pizza"}}],status:{code:3,text:"Entregue"}});
+    this.adicionarPedido({mesa:6,items:[{quantidade:1,item:{id:1,nome:"Pizza"}}],status:{code:4,text:"Fechado"}});
   }
   currentId=0;
   p=[];
