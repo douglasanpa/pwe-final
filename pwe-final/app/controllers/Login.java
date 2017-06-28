@@ -57,8 +57,6 @@ public class Login extends Controller {
             response().discardCookie("user");
             return ok("OK");
         }else{
-            f.hash = "";
-            f.save();
             response().discardCookie("user");
             return ok("OK");
         }
