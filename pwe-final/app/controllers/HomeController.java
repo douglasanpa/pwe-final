@@ -22,7 +22,7 @@ public class HomeController extends Controller {
      */
     public Result index() {
 
-        /*Permissao p = new Permissao();
+        Permissao p = new Permissao();
         p.nome="Garçom";
         p.save();
         
@@ -40,6 +40,7 @@ public class HomeController extends Controller {
         prod.nome = "pizza de muçarela";
         prod.descricao = "muçarela";
         prod.preco = 10;
+        prod.estoque = 10;
         prod.save();
 
         PedidoProduto pp = new PedidoProduto();
@@ -54,11 +55,11 @@ public class HomeController extends Controller {
         ped.itens.add(pp);
         ped.save();
         
-        Estoque e1 = new Estoque();
-        e1.quantidade = 0;
-        e1.produto = prod;
-        e1.save();
-        */
+        // Estoque e1 = new Estoque();
+        // e1.quantidade = 0;
+        // e1.produto = prod;
+        // e1.save();
+        
 
 
         return ok(views.html.index.render());

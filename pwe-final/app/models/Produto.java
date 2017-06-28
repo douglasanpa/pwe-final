@@ -24,6 +24,9 @@ public class Produto extends Model {
     @Constraints.Required
     public float preco;
 
+    @Constraints.Required
+    public int estoque;
+
     public static Finder<Long, Produto> find = new Finder<Long,Produto>(Produto.class);
 
 }

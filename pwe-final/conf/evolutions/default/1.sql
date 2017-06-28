@@ -14,13 +14,6 @@ create table cliente (
   constraint pk_cliente primary key (id)
 );
 
-create table estoque (
-  id                            bigint auto_increment not null,
-  quantidade                    integer,
-  produto_id                    bigint,
-  constraint pk_estoque primary key (id)
-);
-
 create table funcionario (
   id                            bigint auto_increment not null,
   nome                          varchar(255),
@@ -55,6 +48,7 @@ create table produto (
   nome                          varchar(255),
   descricao                     varchar(255),
   preco                         float,
+  estoque                       integer,
   constraint pk_produto primary key (id)
 );
 
@@ -63,9 +57,6 @@ create table status_pedido (
   nome                          varchar(255),
   constraint pk_status_pedido primary key (id)
 );
-
-alter table estoque add constraint fk_estoque_produto_id foreign key (produto_id) references produto (id) on delete restrict on update restrict;
-create index ix_estoque_produto_id on estoque (produto_id);
 
 alter table pedido add constraint fk_pedido_cliente_id foreign key (cliente_id) references cliente (id) on delete restrict on update restrict;
 create index ix_pedido_cliente_id on pedido (cliente_id);
@@ -79,9 +70,6 @@ create index ix_pedido_produto_produto_id on pedido_produto (produto_id);
 
 # --- !Downs
 
-alter table estoque drop foreign key fk_estoque_produto_id;
-drop index ix_estoque_produto_id on estoque;
-
 alter table pedido drop foreign key fk_pedido_cliente_id;
 drop index ix_pedido_cliente_id on pedido;
 
@@ -92,8 +80,6 @@ alter table pedido_produto drop foreign key fk_pedido_produto_produto_id;
 drop index ix_pedido_produto_produto_id on pedido_produto;
 
 drop table if exists cliente;
-
-drop table if exists estoque;
 
 drop table if exists funcionario;
 

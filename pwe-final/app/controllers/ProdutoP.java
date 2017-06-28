@@ -16,16 +16,16 @@ import play.libs.Json;
 public class ProdutoP extends Controller {
 
     public Result estoque() {
-        List<Estoque> prods = Estoque.find
+        List<Produto> prods = Produto.find
             .where()
-            .gt("quantidade",0)
+            .gt("estoque", 0)
             .findList();
 
         return ok(Json.toJson(prods));
     }
 
     public Result all() {
-        List<Estoque> prods = Estoque.find
+        List<Produto> prods = Produto.find
             .all();
 
         return ok(Json.toJson(prods));
