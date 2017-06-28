@@ -22,26 +22,32 @@ import play.libs.Json;
 public class Login extends Controller {
 
     public Result login() {
-        DynamicForm dynamicForm = Form.form().bindFromRequest();
-        String nome = dynamicForm.get("usuario");
-        String senha = dynamicForm.get("senha");
-        Funcionario f = Funcionario.find.where()
-            .eq("nome", nome)
-            .eq("senha", senha)
-            .findUnique();
-        if (f==null) {
+        try {
+            DynamicForm dynamicForm = Form.form().bindFromRequest();
+            String nome = dynamicForm.get("usuario");
+            String senha = dynamicForm.get("senha");
+            Funcionario f = Funcionario.find.where()
+                .eq("nome", nome)
+                .eq("senha", senha)
+                .findUnique();
+            if (f==null) {
+                response().discardCookie("user");
+                return status(401,"Login inválido");    
+            }else{
+                Date date = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
+                String formattedDate = sdf.format(date);
+                String hash = this.MD5(formattedDate);
+                f.hash = hash;
+                f.save();
+                response().setCookie("user", hash, 3600);
+                return ok(Json.toJson(f));
+            }    
+        } catch (Exception e) {
             response().discardCookie("user");
             return status(401,"Login inválido");    
-        }else{
-            Date date = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
-            String formattedDate = sdf.format(date);
-            String hash = this.MD5(formattedDate);
-            f.hash = hash;
-            f.save();
-            response().setCookie("user", hash, 3600);
-            return ok(Json.toJson(f));
         }
+        
     }
     public Result logout() {
         Funcionario f = Funcionario.find.where()
