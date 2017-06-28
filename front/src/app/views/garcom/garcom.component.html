@@ -2,7 +2,7 @@
 	<hr>
     <form (ngSubmit)="novoPedido(mesa)">
     	<div class="input-group">
-            <input class="form-control" type="number" [(ngModel)]="mesa" name="mesa" id="mesa">
+            <input placeholder="Número da mesa..." class="form-control" type="number" [(ngModel)]="mesa" name="mesa" id="mesa">
             <span class="input-group-btn">
                 <button class="btn btn-primary" [disabled]="mesa==''">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Novo Pedido</button>

@@ -6,6 +6,7 @@ import { ListaPedidoComponent,NovoPedidoComponent, PedidoService }from '../../pe
 	templateUrl: './garcom.component.html',
 	styleUrls: ['./garcom.component.css']
 })
+
 export class GarcomComponent implements OnInit {
 	mesa='';
 	pedidos;

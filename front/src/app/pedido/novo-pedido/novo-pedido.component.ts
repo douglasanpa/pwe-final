@@ -35,7 +35,19 @@ export class NovoPedidoComponent implements OnInit
 			this.removerItem(item)
 		}	
 	}
-
+	select(item)
+	{
+		if(item.selected)
+		{
+			item.selected=false;
+			this.removerItem(item);
+		}
+		else
+		{
+			item.selected=true;
+			this.add(item);
+		}
+	}
 	add(item)
 	{
 		this.pedido.items.push({item:item, quantidade:1});

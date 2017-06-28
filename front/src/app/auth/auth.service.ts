@@ -8,14 +8,16 @@ export class AuthService
 {
 	private rotas = ["", "garcom", "central", "cozinha"];
 	
-	constructor(private router: Router, private http: Http ) {
-		router.events.subscribe(event => {
-            if (event instanceof NavigationStart) 
-            {
-            	this.logado();
-            }
-        });
-	 }
+	constructor(private router: Router, private http: Http ) 
+	{
+		//trava acesso a telas
+		// router.events.subscribe(event => {
+		// 	if (event instanceof NavigationStart) 
+		// 	{
+		// 		this.logado();
+		// 	}
+		// });
+	}
 	
 	private parseResponse(response: Response)
 	{

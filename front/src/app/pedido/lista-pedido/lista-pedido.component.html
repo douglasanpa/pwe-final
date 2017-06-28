@@ -4,19 +4,21 @@
     
   
 
-  <span> Mesa: {{pedido.mesa}} </span>
+  <h3> Mesa: {{pedido.mesa}} </h3>
  
-   <span *ngIf="type=='cozinha'">
+   <div *ngIf="type=='cozinha'">
     <h4>Itens</h4>
-   	  <div *ngFor="let item of pedido.items " >
-        nome:
-        {{item.item.nome}} 
-        qt:
-        {{item.quantidade}}
-      </div>
+    <table class="table table-default table-bordered">
+      <tr><th>Item</th><th>Quantidade</th></tr>
+      <tr *ngFor="let item of pedido.items " >
+        <td> {{item.item.nome}} </td>
+        <td> {{item.quantidade}} </td>
+      </tr>
+    </table>
+   	  
 
       <button class="pull-right btn btn-default" (click)="pronto(pedido)">Pronto para entrega</button>
-   </span>
+   </div>
  
   <span class='pull-right' *ngIf="type=='garcon'"> 
   	<span class="badge" [ngClass]="getClass(pedido.status.code)">{{pedido.status.text|uppercase}}</span>

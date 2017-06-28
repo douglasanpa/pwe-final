@@ -1,21 +1,22 @@
 <div id="NovoPedidoScreen">
-	<div id="NovoPedido">
+	<h1>Novo pedido</h1>
+	<div id="NovoPedido" class="panel">
+		<div class="panel-body">
 		<form (ngSubmit)="salvar()">
 			<div class="form-group">
 				<label>Mesa</label>	
-				<input type="number" [(ngModel)]="mesa" name="mesa">
+				<input class="form-control" type="number" [(ngModel)]="mesa" name="mesa">
 			</div>
 			
 			<div class="form-group">
-				<label>Itens</label>	
-				<input type="text" [(ngModel)]="searchitem" name="searchitem">
+				<label>Filtro de Itens</label>	
+				<input class="form-control" type="text" [(ngModel)]="searchitem" name="searchitem">
 			</div>
 			
 			<div class="lista-items">
-				<div *ngFor="let item of items|filter:searchitem:'nome'" >
+				<a *ngFor="let item of items|filter:searchitem:'nome'" class="item" [ngClass]="{selected:item.selected}"(click)="select(item)">
 					{{item.nome}}
-					<a class="btn btn-primary" (click)="add(item)">Adicionar</a>
-				</div>
+				</a>
 			</div>
 
 			<h3>Items</h3>
@@ -28,9 +29,12 @@
 				</div>
 			</div>
 			
-			<button class="btn btn-primary">Adicionar</button>
+			<button class="btn btn-success">Salvar</button>
 		
 		</form>
-		<button (click)="cancelar()" class="btn btn-primary">cancelar</button>
+		</div>
+		<div class="panel-footer">
+		<button (click)="cancelar()" class="btn btn-warning">cancelar</button>
+		</div>
 	</div>
 </div>
