@@ -14,7 +14,7 @@
 			</div>
 			
 			<div class="lista-items">
-				<a *ngFor="let item of items|filter:searchitem:'nome'" class="item" [ngClass]="{selected:item.selected}"(click)="select(item)">
+				<a *ngFor="let item of items|filter:searchitem:'nome'" class="item btn " [ngClass]="{selected:item.selected,'btn-default':!item.selected,'btn-info':item.selected}"(click)="select(item)">
 					{{item.nome}}
 				</a>
 			</div>
@@ -24,17 +24,17 @@
 			<div>
 				<div *ngFor="let item of pedido.items">
 					<a class="btn btn-default" (click)="addQt(item,-1)">-</a>
-					{{item.item.nome}} quantidade:{{item.quantidade}}
+					{{item.item.nome}} x {{item.quantidade}}
 					<a class="btn btn-default" (click)="addQt(item,1)">+</a>
 				</div>
 			</div>
 			
-			<button class="btn btn-success">Salvar</button>
+			<button class="btn btn-success pull-right">Salvar</button>
 		
 		</form>
 		</div>
 		<div class="panel-footer">
-		<button (click)="cancelar()" class="btn btn-warning">cancelar</button>
+		<button (click)="cancelar()" class="btn btn-warning pull-right">cancelar</button>
 		</div>
 	</div>
 </div>

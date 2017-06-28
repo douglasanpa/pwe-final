@@ -40,7 +40,7 @@ export class NovoPedidoComponent implements OnInit
 		if(item.selected)
 		{
 			item.selected=false;
-			this.removerItem(item);
+			this.removerItem({item});
 		}
 		else
 		{

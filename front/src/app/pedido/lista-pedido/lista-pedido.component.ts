@@ -15,6 +15,11 @@ export class ListaPedidoComponent implements OnInit
 	{ 
 		
 	}
+	
+	atualizarPedidos()
+	{
+		this.pedidoService.update();
+	}
 
 	pronto(pedido)
 	{
