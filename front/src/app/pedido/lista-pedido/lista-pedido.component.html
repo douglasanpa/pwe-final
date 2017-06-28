@@ -11,7 +11,7 @@
     <table class="table table-default table-bordered">
       <tr><th>Item</th><th>Quantidade</th></tr>
       <tr *ngFor="let item of pedido.items " >
-        <td> {{item.item.nome}} </td>
+        <td> {{item.produto.nome}} </td>
         <td> {{item.quantidade}} </td>
       </tr>
     </table>
@@ -21,9 +21,9 @@
    </div>
  
   <span class='pull-right' *ngIf="type=='garcon'"> 
-  	<span class="badge" [ngClass]="getClass(pedido.status.code)">{{pedido.status.text|uppercase}}</span>
-  	<button *ngIf="pedido.status.code==2" class="btn btn-primary" (click)="entregar(pedido)">Entregar</button>
-  	<button *ngIf="pedido.status.code==3" class="btn btn-primary" (click)="fecharConta(pedido)">Fechar Conta</button>
+  	<span class="badge" [ngClass]="getClass(pedido.status.id)">{{pedido.status.nome|uppercase}}</span>
+  	<button *ngIf="pedido.status.id==2" class="btn btn-primary" (click)="entregar(pedido)">Entregar</button>
+  	<button *ngIf="pedido.status.id==3" class="btn btn-primary" (click)="fecharConta(pedido)">Fechar Conta</button>
   </span>
 
 </div>

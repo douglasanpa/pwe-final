@@ -63,7 +63,7 @@ export class NovoPedidoComponent implements OnInit
 	
 	salvar()
 	{
-		this.save.emit({ status:"", mesa:this.mesa, items:this.pedido.items });
+		this.save.emit({ mesa:this.mesa, items:this.pedido.items });
 	}
 	
 	removerItem(item)
