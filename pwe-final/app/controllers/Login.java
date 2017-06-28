@@ -43,29 +43,47 @@ public class Login extends Controller {
             return ok("OK");
         }
     }
+    public Result logout() {
+        Funcionario f = Funcionario.find.where()
+            .eq("hash", this.getHash())
+            .findUnique();
+        if (f==null) {
+            response().discardCookie("user");
+            return ok("OK");
+        }else{
+            f.hash = "";
+            f.save();
+            response().discardCookie("user");
+            return ok("OK");
+        }
+    }
 
     public Result estaLogado() {
-        String hash = response().getCookie("user");
-        
+        String hash = this.getHash();
         Funcionario f = Funcionario.find.where()
-            .eq("nome", nome)
-            .eq("senha", senha)
+            .eq("hash", hash)
             .findUnique();
         if (f==null) {
             response().discardCookie("user");
             return status(401,"Login inválido");    
         }else{
-            Date date = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
-            String formattedDate = sdf.format(date);
-            String hash = this.MD5(formattedDate);
-            f.hash = hash;
-            f.save();
-            response().setCookie("user", hash, 3600);
             return ok("OK");
         }
-        
- 
+    }
+    private String getHash(){
+        String Cookie[] = request().headers().get("Cookie");
+        String hash =  "";
+        try {
+        for (String cookieStr : Cookie ) {
+            String name = cookieStr.substring(0, cookieStr.indexOf("="));  
+            if (name.equals("user")){
+                return hash = cookieStr.substring(cookieStr.indexOf("=")+1);
+            }
+        }    
+        } catch (Exception e) {
+            return null;
+        }
+        return null;        
     }
 
     public String MD5(String md5) {
