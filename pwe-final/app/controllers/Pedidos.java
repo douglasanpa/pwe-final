@@ -34,10 +34,16 @@ public class Pedidos extends Controller {
     }
 
     public Result all() {
-        List<Produto> prods = Produto.find
+        Login l = new Login();
+        if(l.isLogged()){
+            List<Pedido> peds = Pedido.find
             .all();
 
-        return ok(Json.toJson(prods));
+        return ok(Json.toJson(peds));
+        }else{
+            return status(401,"Login inválido");
+        }
+        
     }
 
 

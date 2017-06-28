@@ -63,17 +63,31 @@ public class Login extends Controller {
     }
 
     public Result estaLogado() {
+        if(isLogged()){
+            String hash = this.getHash();
+            Funcionario f = Funcionario.find.where()
+                .eq("hash", hash)
+                .findUnique();
+            return ok(Json.toJson(f));
+        }else{
+            response().discardCookie("user");
+            return status(401,"Login inválido");   
+        }
+    }
+
+    public Boolean isLogged() {
         String hash = this.getHash();
         Funcionario f = Funcionario.find.where()
             .eq("hash", hash)
             .findUnique();
         if (f==null) {
-            response().discardCookie("user");
-            return status(401,"Login inválido");    
+            return false;
         }else{
-            return ok(Json.toJson(f));
+            return true;
         }
     }
+
+
     private String getHash(){
         String Cookie[] = request().headers().get("Cookie");
         String hash =  "";

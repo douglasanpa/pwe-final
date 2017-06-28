@@ -30,6 +30,7 @@ public class Pedido extends Model {
     @Constraints.Required
     public Date datahora;
     
+    @ManyToOne
     @Constraints.Required
     public StatusPedido status;
 
