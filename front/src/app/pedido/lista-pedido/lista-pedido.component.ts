@@ -13,8 +13,7 @@ export class ListaPedidoComponent implements OnInit
 
 	constructor(private pedidoService: PedidoService) 
 	{ 
-		this.model = pedidoService.getPedidos();
-		setInterval(()=>{this.model = pedidoService.getPedidos();},100);
+		this.pedidoService.getPedidos().subscribe((data)=>{console.log(data);this.model=data;});
 	}
 
 	pronto(pedido)
