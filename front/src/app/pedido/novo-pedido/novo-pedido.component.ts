@@ -21,19 +21,20 @@ export class NovoPedidoComponent implements OnInit
 	@Output("onCancel") cancel:EventEmitter<Boolean> = new EventEmitter<Boolean>();
 	
 	searchitem="";
-	items;
+	items=[];
 	
-	constructor(private produtoService:ProdutoService) 
+	constructor(private produtoService:ProdutoService) { }
+
+	addQt(item, qt)
 	{
-		this.items=this.produtoService.listarProdutos();
-	}
-	addQt(item,qt)
-	{
-		item.quantidade+=qt;
-		if(item.quantidade<1)
-		{	
+		item.quantidade += qt;
+		if(item.quantidade > item.item.estoque) {
+			item.quantidade = item.item.estoque;
+		}
+		if(item.quantidade < 1) {
 			this.removerItem(item)
 		}
+		
 	}
 
 	add(item)
@@ -41,7 +42,13 @@ export class NovoPedidoComponent implements OnInit
 		this.pedido.items.push({item:item, quantidade:1});
 	}
 
-	ngOnInit() {}
+	ngOnInit() {
+		this.produtoService.listarProdutos()
+		.subscribe((data)=> {
+			console.log(data);
+			this.items=data;
+		});
+	}
 	
 	salvar()
 	{

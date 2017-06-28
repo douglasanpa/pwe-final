@@ -14,7 +14,6 @@ export class ListaPedidoComponent implements OnInit
 	constructor(private pedidoService: PedidoService) 
 	{ 
 		this.model = pedidoService.getPedidos();
-		console.log(this.model);
 		setInterval(()=>{this.model = pedidoService.getPedidos();},100);
 	}
 
