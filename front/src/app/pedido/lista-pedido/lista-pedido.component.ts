@@ -18,7 +18,9 @@ export class ListaPedidoComponent implements OnInit
 
 	pronto(pedido)
 	{
-		this.pedidoService.atualizaPedido(pedido).subscribe();
+		this.pedidoService.atualizaPedido(pedido)
+						  .subscribe((data)=>{this.pedidoService.update();});
+
 	}
 	ngOnInit() { }
 	

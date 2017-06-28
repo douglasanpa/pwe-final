@@ -1,27 +1,24 @@
 <div *ngIf="model">
-<div class="panel panel-default" *ngFor="let pedido of model" >
-<div class="panel-body">
-  <h3> {{pedido.id}}# Mesa: {{pedido.mesa}} </h3>
- 
-   <div *ngIf="type=='cozinha'">
-    <h4>Itens</h4>
-    <table class="table table-default table-bordered">
-      <tr><th>#</th><th>Item</th><th>Quantidade</th></tr>
-      <tr *ngFor="let item of pedido.itens" >
-        <td> {{item.produto.id}}   </td>
-        <td> {{item.produto.nome}} </td>
-        <td> {{item.quantidade}}   </td>
-      </tr>
-    </table>
-      <button class="pull-right btn btn-default" (click)="pronto(pedido)">Pronto para entrega</button>
-   </div>
- 
-  <span class='pull-right' *ngIf="type=='garcon'"> 
-  	<span class="badge" [ngClass]="getClass(pedido.status.id)">{{pedido.status.nome|uppercase}}</span>
-  	<button *ngIf="pedido.status.id==2" class="btn btn-warning" (click)="entregar(pedido)">Entregar</button>
-  	<button *ngIf="pedido.status.id==3" class="btn btn-success" (click)="fecharConta(pedido)">Fechar Conta</button>
-  </span>
-
-</div>
-</div>
+  <div class="panel panel-default" *ngFor="let pedido of model|filter:'0':'mesa':true" >
+  <div class="panel-body">
+    <h3> {{pedido.id}}# Mesa: {{pedido.mesa}} </h3>
+     <div *ngIf="type=='cozinha'">
+      <h4>Itens</h4>
+      <table class="table table-default table-bordered">
+        <tr><th>#</th><th>Item</th><th>Quantidade</th></tr>
+        <tr *ngFor="let item of pedido.itens" >
+          <td> {{item.produto.id}}   </td>
+          <td> {{item.produto.nome}} </td>
+          <td> {{item.quantidade}}   </td>
+        </tr>
+      </table>
+        <button class="pull-right btn btn-default" (click)="pronto(pedido)">Pronto para entrega</button>
+     </div>
+    <span class='pull-right' *ngIf="type=='garcon'"> 
+    	<span class="badge" [ngClass]="getClass(pedido.status.id)">{{pedido.status.nome|uppercase}}</span>
+    	<button *ngIf="pedido.status.id==2" class="btn btn-warning" (click)="entregar(pedido)">Entregar</button>
+    	<button *ngIf="pedido.status.id==3" class="btn btn-success" (click)="fecharConta(pedido)">Fechar Conta</button>
+    </span>
+  </div>
+  </div>
 </div>

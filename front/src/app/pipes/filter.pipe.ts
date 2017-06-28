@@ -6,19 +6,20 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform 
 {
-	transform(value, filterQuery: string, prop:any=null): any 
+	transform(value, filterQuery: string, prop:any=null, isNot:boolean=false): any 
 	{
 		if(value.length===0||filterQuery==='')
 		{
 			return value;
 		}
 		const resultArray=[];
-
 		for(const item of value)
 		{
 			if(prop!=null)
 			{
-				if(this.hasQuery(item[prop], filterQuery))
+				var hasQuery = this.hasQuery(String(item[prop]), filterQuery)
+				hasQuery=isNot?!hasQuery:hasQuery;
+				if(hasQuery)
 				{
 					resultArray.push(item);
 				}
