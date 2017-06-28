@@ -16,12 +16,6 @@ import com.fasterxml.jackson.databind.JsonNode;
  */
 public class Pedidos extends Controller {
 
-    //listar todos os Pedidos
-    //visualizar pedidos cozinha
-    //cozinha mudar status para pronto para entrega
-    //adicionar pedidos do garçom
-    //adicionar pedidos da central
-    //garcom fechar conta para central
     //central emitir nota fiscal
     
 
@@ -100,6 +94,30 @@ public class Pedidos extends Controller {
         }else{
             return status(401,"Login inválido");
         }
+        
+    }
+
+    public Result busca(String tipo) {
+        if(tipo.equals("cozinha")){
+            StatusPedido st = StatusPedido.find.where()
+            .eq("id", "1")
+            .findUnique();
+            List<Pedido> peds = Pedido.find
+            .where()
+            .eq("status", st)
+            .findList();
+            return ok(Json.toJson(peds));        
+        }else{
+            StatusPedido st = StatusPedido.find.where()
+            .eq("id", "4")
+            .findUnique();
+            List<Pedido> peds = Pedido.find
+            .where()
+            .ne("status", st)
+            .findList();
+            return ok(Json.toJson(peds));        
+        }
+        
         
     }
 

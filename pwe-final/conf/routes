@@ -10,6 +10,7 @@ POST    /login                      controllers.Login.login
 POST    /logout                     controllers.Login.logout
 GET     /logado                     controllers.Login.estaLogado
 GET     /pedido                     controllers.Pedidos.all
+GET     /pedido/:tipo               controllers.Pedidos.busca(tipo:String)
 POST    /pedido                     controllers.Pedidos.salvar
 POST    /pedido/atualiza            controllers.Pedidos.atualiza
 
