@@ -8,11 +8,12 @@ export class AuthService {
 
 	constructor(private http: Http) { }
 
-	login(user: string, pass: string) 
+	login(model:{usuario: string, senha: string}) 
 	{
-		var params={ usuario: user, senha: pass };
-		return this.http.post("http://localhost:9000/login", params)
+		var req = this.http.post("http://localhost:9000/login", model)
 		.map((response: Response) => response.json());
+		console.log(req);
+		return req;
 	}
 	logado(){
 		return this.http.post("http://localhost:9000/logado",{});
