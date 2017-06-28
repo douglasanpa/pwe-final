@@ -10,6 +10,8 @@ export class ListaPedidoComponent implements OnInit
 {
 	model;
 	@Input() type;
+	@Input() filterId='';
+	@Input() filterNegate=false;
 
 	constructor(private pedidoService: PedidoService) 
 	{ 

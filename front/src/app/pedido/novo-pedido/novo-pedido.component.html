@@ -17,6 +17,8 @@
 				<a *ngFor="let item of items|filter:searchitem:'nome'" class="item btn " [ngClass]="{selected:item.selected,'btn-default':!item.selected,'btn-info':item.selected}"(click)="select(item)">
 					{{item.nome}}
 				</a>
+				<p *ngIf="items.length<=0&&!loading" class="alert alert-warning">Sem itens no estoque...</p>
+				<p *ngIf="loading" class="alert alert-info">Carregando itens...</p>
 			</div>
 
 			<h3>Items</h3>

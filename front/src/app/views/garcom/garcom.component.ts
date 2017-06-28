@@ -7,28 +7,6 @@ import { ListaPedidoComponent, NovoPedidoComponent, PedidoService, IniciaNovoPed
 })
 
 export class GarcomComponent implements OnInit {
-	mesa='';
-	pedidos;
-	novo=false;
-	constructor(private pedidoService:PedidoService) 
-	{ 
-		
-	}
-	
-	ngOnInit() 
-	{
-	}
-	
-	novoPedido(mesa)
-	{
-		this.novo=true;
-	}
-
-	adicionarPedido(pedido)
-	{
-		console.log(pedido);
-		this.pedidoService.adicionarPedido(pedido).subscribe();
-		this.mesa="";
-		this.novo=false;
-	}
+	constructor() {}
+	ngOnInit(){}
 }
