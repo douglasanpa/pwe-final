@@ -13,6 +13,7 @@ public class Permissao extends Model {
     @Constraints.Min(10)
     public Long id;
 
+    @Column(unique = true)
     @Constraints.Required
     public String nome;
 

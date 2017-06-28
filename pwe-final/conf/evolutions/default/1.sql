@@ -20,6 +20,7 @@ create table funcionario (
   permissao_id                  bigint,
   senha                         varchar(255),
   hash                          varchar(255),
+  constraint uq_funcionario_nome unique (nome),
   constraint pk_funcionario primary key (id)
 );
 
@@ -42,6 +43,7 @@ create table pedido_produto (
 create table permissao (
   id                            bigint auto_increment not null,
   nome                          varchar(255),
+  constraint uq_permissao_nome unique (nome),
   constraint pk_permissao primary key (id)
 );
 
