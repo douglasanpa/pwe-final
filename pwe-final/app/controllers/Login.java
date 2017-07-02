@@ -15,8 +15,6 @@ import java.text.*;
 
 import play.libs.Json;
 
-import play.mvc.Http.Cookie;
-import play.api.mvc.DiscardingCookie;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -47,9 +45,8 @@ public class Login extends Controller {
                 Funcionario f2 = Funcionario.find.where()
                 .eq("hash", hash)
                 .findUnique();
-                //response().setCookie("user", hash);
-                Cookie("user", hash);
-                return Ok(Json.toJson(f)).withCookies();
+                response().setCookie("user", hash);
+                return ok(Json.toJson(f));
             }    
         } catch (Exception e) {
             //response().discardCookie("user");
