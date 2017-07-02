@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { Router, NavigationStart } from '@angular/router';
-
+import {Subject} from 'rxjs/Subject';
 @Injectable()
 export class AuthService 
 {
@@ -11,14 +11,19 @@ export class AuthService
 	constructor(private router: Router, private http: Http ) 
 	{
 		//trava acesso a telas
-		// router.events.subscribe(event => {
-		// 	if (event instanceof NavigationStart) 
-		// 	{
-		// 		this.logado();
-		// 	}
-		// });
+		router.events.subscribe(event => {
+			if (event instanceof NavigationStart) 
+			{
+				this.logado();
+			}
+		});
 	}
+	
+	loginObserver = new Subject();
+	checkloginObserver = new Subject();
+	
 	permissionId=-1;
+	
 	private parseResponse(response: Response)
 	{
 		return response.json();
@@ -26,27 +31,27 @@ export class AuthService
 
 	login(model:{usuario: string, senha: string})
 	{
-		var observer = this.http.post("http://localhost:9000/login", model)
-								.map(this.parseResponse);
-		observer.subscribe(
+		this.http.post("http://localhost:9000/login", model)
+								.map(this.parseResponse).subscribe(
 			(data)=>{
 				this.permissionId=data.permissao.id;
 				this.router.navigate(["/", this.rotas[data.permissao.id]]);
+				this.loginObserver.next(data);
 			});
-		return observer;
+		return this.loginObserver;
 	}
 
 	logado(){
-		var observer = this.http.post("http://localhost:9000/logado", {})
-								.map(this.parseResponse);
-		observer.subscribe(
+		this.http.post("http://localhost:9000/logado", {})
+								.map(this.parseResponse).subscribe(
 			(data)=>{
 				this.router.navigate(["/", this.rotas[data.permissao.id]]);
+				this.checkloginObserver.next(data);
 			}
 		,(error)=>{
 			this.router.navigate(["/"]);
 		});
-		return observer;
+		return this.checkloginObserver;
 	}
 
 	logout(){

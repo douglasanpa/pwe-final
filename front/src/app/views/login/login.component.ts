@@ -18,8 +18,9 @@ export class LoginComponent implements OnInit {
 	ngOnInit() {}
 
 	confirm() {
-		this.loading=true;
 		
+		if(this.loading==false){
+			
 		this.authService.login(this.model)
 						.subscribe((data)=>{
 							this.loading=false;
@@ -28,6 +29,8 @@ export class LoginComponent implements OnInit {
 						(error)=>{
 							this.loading=false;
 						});
+						this.loading=true;
+		}
 	}
 
 }
