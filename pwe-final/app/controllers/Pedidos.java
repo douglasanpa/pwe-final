@@ -31,6 +31,7 @@ public class Pedidos extends Controller {
             StatusPedido s = StatusPedido.find.where()
             .eq("id", 1L)
             .findUnique();
+
             Pedido ped = new Pedido();
             ped.mesa = json.get("mesa").asInt();
             ped.datahora = new Date();
@@ -51,6 +52,17 @@ public class Pedidos extends Controller {
             }
             
             ped.valortotal = valortotal;
+
+            String clienteID = json.get("cliente").get("id").asText();
+            if(clienteID != null && !clienteID.isEmpty()){
+                Cliente cliente = Cliente.find
+                .where()
+                .eq("id", json.get("cliente").get("id").asText())
+                .findUnique();
+                ped.cliente = cliente;
+            }
+
+
             ped.save();
             return ok("Pedido atualizado");
         } catch (Exception e) {

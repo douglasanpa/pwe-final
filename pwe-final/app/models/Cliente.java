@@ -19,6 +19,9 @@ public class Cliente extends Model {
     @Constraints.Required
     public long cpf;
 
+    @Column(unique = true)
+    public String telefone;
+
     public String endereco;
     
     public String bairro;

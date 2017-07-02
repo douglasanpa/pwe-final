@@ -7,10 +7,12 @@ create table cliente (
   id                            bigint auto_increment not null,
   nome                          varchar(255),
   cpf                           bigint,
+  telefone                      varchar(255),
   endereco                      varchar(255),
   bairro                        varchar(255),
   cidade                        varchar(255),
   referencia                    varchar(255),
+  constraint uq_cliente_telefone unique (telefone),
   constraint pk_cliente primary key (id)
 );
 
