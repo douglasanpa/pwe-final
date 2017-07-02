@@ -18,7 +18,7 @@
         <button class="pull-right btn btn-default" (click)="pronto(pedido)">Pronto para entrega</button>
      </div>
      <span *ngIf="pedido.status.id=='3'">
-       {{ pedido.valortotal | currency }}
+       {{ pedido.valortotal | currency:'BRL' }}
      </span>
     <span class='pull-right' *ngIf="type=='garcon' || type=='central'">
     	<span class="badge" [ngClass]="getClass(pedido.status.id)">{{pedido.status.nome|uppercase}}</span>
