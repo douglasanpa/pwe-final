@@ -22,6 +22,7 @@ export class NovoClienteComponent implements OnInit {
 	
 	register(model) 
 	{
+    this.showForm=false;
 		this.clienteService.adicionar(model).subscribe((data)=>console.log(data)); 
 	}
   
