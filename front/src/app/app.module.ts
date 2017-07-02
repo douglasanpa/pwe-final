@@ -24,6 +24,8 @@ import { PedidoService } from './pedido';
 import { ProdutoService } from './produto';
 import { AuthService } from './auth/auth.service';
 import { IniciaNovoPedidoComponent } from './pedido/inicia-novo-pedido/inicia-novo-pedido.component';
+import { NovoClienteComponent } from './novo-cliente/novo-cliente.component';
+import { ClienteService } from './novo-cliente/cliente.service';
 
 const appRoutes: Routes = [
 	{ path: '', component: LoginComponent },
@@ -45,7 +47,8 @@ const appRoutes: Routes = [
 		NovoPedidoComponent,
 		FilterPipe,
 		CentraladminComponent,
-		IniciaNovoPedidoComponent
+		IniciaNovoPedidoComponent,
+		NovoClienteComponent
 	],
 	imports: [
 		BrowserModule,
@@ -56,7 +59,8 @@ const appRoutes: Routes = [
 	providers: [
 		AuthService, 
 		PedidoService, 
-		ProdutoService
+		ProdutoService,
+		ClienteService
 	],
 	bootstrap: [AppComponent]
 })

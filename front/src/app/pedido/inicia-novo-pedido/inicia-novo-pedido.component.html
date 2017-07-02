@@ -1,10 +1,13 @@
-<novo-pedido *ngIf="novo" [mesa]="mesa" (onSave)="adicionarPedido($event)" (onCancel)="novo=false;mesa=''"></novo-pedido>
+<novo-pedido *ngIf="novo" [cliente]="cliente" [mesa]="mesa" (onSave)="adicionarPedido($event)" (onCancel)="novo=false;mesa=''"></novo-pedido>
 <form (ngSubmit)="novoPedido(mesa)">
-	<div class="input-group">
+
+	<div *ngIf="!cliente" class="input-group">
         <input placeholder="Número da mesa..." class="form-control" type="number" [(ngModel)]="mesa" name="mesa" id="mesa">
         <span class="input-group-btn">
             <button class="btn btn-primary">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Novo Pedido</button>
         </span>
 	</div>
+
+	<button class="btn btn-primary" *ngIf="cliente"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo Pedido</button>
 </form>

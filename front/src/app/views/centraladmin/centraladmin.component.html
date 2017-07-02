@@ -1,11 +1,36 @@
 <div class="container">
-	<div class="col-md-4">
+
+	<ul class="nav nav-tabs">
+		<li [ngClass]="tab==0?'active':''" ><a class='btn'  (click)="tab=0" >Pedidos</a></li>
+		<li [ngClass]="tab==1?'active':''"><a class='btn' (click)="tab=1" >Clientes</a></li>
+	</ul>
+
+	<div *ngIf="tab==0" class="col-md-4">
 	  <h3>Adicionar pedido</h3>
 	  	<inicia-novo-pedido fixedtable="'0'"></inicia-novo-pedido>
-	  <lista-pedido [type]="'central'"></lista-pedido>
+	    <lista-pedido [type]="'central'"></lista-pedido>
 	</div>
-	<!-- <div class="col-md-4">
-	  <h3>Clientes</h3>
-	  <button class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo Cliente</button>
-	</div> -->
+	<div *ngIf="tab==1" class="col-md-4">
+		<h3>Clientes </h3>
+		<novo-cliente></novo-cliente>
+		<div>
+			<h3>Lista de clientes</h3>
+			<input class="form-control" type="text" [(ngModel)]="clientFilter">
+			<div *ngIf="!clientes" class="alert alert-info">
+				Sem clientes carregados...
+			</div>
+			<div *ngIf="!!clientes">
+			<div  class="panel panel-default" *ngFor="let cliente of clientes|filter:clientFilter">
+				<div class="panel-heading">{{cliente.nome}} {{cliente.telefone}}<inicia-novo-pedido [cliente]="cliente" fixedtable="'0'"></inicia-novo-pedido></div>
+				<div class="panel-body">
+					<p>Cpf: {{cliente.cpf}}</p>
+					<p>Endereco: {{cliente.endereco}}</p>
+					<p>Referencia: {{cliente.referencia}}</p>
+					<p>Bairro: {{cliente.bairro}}</p>
+					<p>Cidade: {{cliente.cidade}}</p>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div> 
 </div>

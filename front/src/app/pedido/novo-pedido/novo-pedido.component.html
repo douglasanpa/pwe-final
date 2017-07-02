@@ -3,9 +3,15 @@
 	<div id="NovoPedido" class="panel">
 		<div class="panel-body">
 		<form (ngSubmit)="salvar()">
-			<div class="form-group">
+			<div *ngIf="!cliente" class="form-group">
 				<label>Mesa</label>	
 				<input class="form-control" type="number" [(ngModel)]="mesa" name="mesa">
+			</div>
+			<div *ngIf="cliente">
+				<div>Cliente:{{cliente.nome}}</div>
+				<div>Endereco:{{cliente.endereco}}</div>
+				<div>Referencia:{{cliente.referencia}}</div>
+				<div>Telefone:{{cliente.telefone}}</div>
 			</div>
 			
 			<div class="form-group">

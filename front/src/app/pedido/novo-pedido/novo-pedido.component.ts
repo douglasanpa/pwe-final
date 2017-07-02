@@ -15,7 +15,7 @@ export class NovoPedidoComponent implements OnInit
 		items:[],
 		mesa:""
 	};
-
+	@Input('cliente') cliente=null;
 	@Input("mesa") mesa;
 	@Output("onSave") save:EventEmitter<Object> = new EventEmitter<Object>();
 	@Output("onCancel") cancel:EventEmitter<Boolean> = new EventEmitter<Boolean>();
@@ -65,7 +65,7 @@ export class NovoPedidoComponent implements OnInit
 	
 	salvar()
 	{
-		this.save.emit({ mesa:this.mesa, items:this.pedido.items });
+		this.save.emit({ cliente: this.cliente, mesa:this.mesa, items:this.pedido.items });
 	}
 	
 	removerItem(item)

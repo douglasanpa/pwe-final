@@ -1,0 +1,43 @@
+<button role="button" (click)="showForm=true" class="btn btn-primary">
+	<span  class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
+	Novo Cliente 
+</button>
+		<div *ngIf="showForm" class='novo-cliente-dialog'>
+			<div class='novo-cliente-dialog-body container'>
+			<h4>Novo Cliente</h4>
+			<form (ngSubmit)="register(clientModel)">
+				<div> 
+					<label for="nome">Nome</label> 
+					<input [(ngModel)]="clientModel.nome" name="nome" class="form-control" type="text"> 
+				</div>
+				<div> 
+					<label for="telefone">telefone</label> 
+					<input [(ngModel)]="clientModel.telefone" name="telefone" class="form-control" type="text"> 
+				</div>
+				<div> 
+					<label for="cpf">cpf</label> 
+					<input [(ngModel)]="clientModel.cpf" name="cpf" class="form-control" type="text"> 
+				</div>
+				<div> 
+					<label for="endereco">endereco</label> 
+					<input [(ngModel)]="clientModel.endereco" name="endereco" class="form-control" type="text"> 
+				</div>
+				<div> 
+					<label for="referencia">referencia</label> 
+					<input [(ngModel)]="clientModel.referencia" name="referencia" class="form-control" type="text"> 
+				</div>
+				<div> 
+					<label for="bairro">bairro</label> 
+					<input [(ngModel)]="clientModel.bairro" name="bairro" class="form-control" type="text"> 
+				</div>
+				<div> 
+					<label for="cidade">cidade</label> 
+					<input [(ngModel)]="clientModel.cidade" name="cidade" class="form-control" type="text"> 
+				</div>
+				<hr>
+				<button role="button" class="btn btn-warning" (click)="showForm=false">Cancelar</button>
+				<button role="submit" class="btn btn-primary pull-right">Registrar</button>
+			</form>
+			
+		</div>
+		</div>

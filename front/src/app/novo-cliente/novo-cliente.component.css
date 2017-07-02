@@ -1,0 +1,18 @@
+.novo-cliente-dialog
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 9999;
+}
+.novo-cliente-dialog-body
+{
+	display: table;
+	margin: 100px auto;
+	background-color: white;
+	padding: 10px;
+	border-radius: 4px;
+}

@@ -10,6 +10,7 @@ export class IniciaNovoPedidoComponent implements OnInit {
 	pedidos;
 	novo=false;
 	@Input('fixedtable') fixedtable='';
+	@Input('cliente') cliente=null;
 	constructor(private pedidoService:PedidoService) {}
 	
 	ngOnInit() {
@@ -23,7 +24,8 @@ export class IniciaNovoPedidoComponent implements OnInit {
 
 	adicionarPedido(pedido)
 	{
-		this.pedidoService.adicionarPedido(pedido).subscribe((data)=>{this.pedidoService.update();});
+		this.pedidoService.adicionarPedido(pedido)
+						  .subscribe((data)=>{this.pedidoService.update();});
 		this.mesa="";
 		if(this.fixedtable=="")
 			this.novo=false;
