@@ -15,8 +15,9 @@ export class HeaderComponent implements OnInit {
 
 logado;
 	deslogar(){
-		this.authService.logout().subscribe((data)=>this.logado=false);
+		this.authService.logout();
 		this.router.navigate(["/","login"]);
+		this.logado=false;
 	}
   ngOnInit() {
   	this.authService.logado().subscribe((data)=>this.logado=true,(error)=>this.logado=false);
