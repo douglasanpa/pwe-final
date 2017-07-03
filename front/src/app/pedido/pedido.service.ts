@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response ,RequestOptions} from '@angular/http';
 import {PedidoModel,NovoPedidoModel} from './';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
@@ -7,13 +7,16 @@ import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class PedidoService {
-
-	constructor(private http: Http) {}
+	options;
+	constructor(private http: Http) {
+		
+		this.options = new RequestOptions({ withCredentials: true });
+	}
 	pedidos = new Subject();
 
 	getPedidos(type)
 	{	
-		this.http.get("http://localhost:9000/pedido/"+type)
+		this.http.get("http://localhost:9000/pedido/"+type, this.options)
 				 .map(
 				 	(response:Response)=>response.json()
 				 	)
@@ -21,7 +24,7 @@ export class PedidoService {
 		return this.pedidos;
 	}
 	update(){
-		this.http.get("http://localhost:9000/pedido")
+		this.http.get("http://localhost:9000/pedido", this.options)
 				 .map(
 				 	(response:Response)=>response.json()
 				 	)
@@ -29,11 +32,11 @@ export class PedidoService {
 	}
 	atualizaPedido(pedido)
 	{
-		return this.http.post("http://localhost:9000/pedido/atualiza", pedido);
+		return this.http.post("http://localhost:9000/pedido/atualiza", pedido, this.options);
 	}
 
 	adicionarPedido(pedido)
 	{
-		return this.http.post("http://localhost:9000/pedido", pedido);
+		return this.http.post("http://localhost:9000/pedido", pedido, this.options);
 	}
 }

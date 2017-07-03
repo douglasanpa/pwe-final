@@ -24,7 +24,10 @@
 					{{item.nome}}
 				</a>
 				<p *ngIf="items.length<=0&&!loading" class="alert alert-warning">Sem itens no estoque...</p>
+
 				<p *ngIf="loading" class="alert alert-info">Carregando itens...</p>
+				<p *ngIf="error" class="alert alert-warning">Não foi possivel carregar os itens.</p>
+
 			</div>
 
 			<h3>Items</h3>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response ,RequestOptions} from '@angular/http';
 import 'rxjs/Rx';
 import { Router, NavigationStart } from '@angular/router';
 import {Subject} from 'rxjs/Subject';
@@ -7,9 +7,11 @@ import {Subject} from 'rxjs/Subject';
 export class AuthService 
 {
 	private rotas = ["", "garcom", "central", "cozinha"];
-	
+    options;
 	constructor(private router: Router, private http: Http ) 
 	{
+		this.options = new RequestOptions({ withCredentials: true });
+		
 		//trava acesso a telas
 		router.events.subscribe(event => {
 			if (event instanceof NavigationStart) 
@@ -31,7 +33,7 @@ export class AuthService
 
 	login(model:{usuario: string, senha: string})
 	{
-		this.http.post("http://localhost:9000/login", model)
+		this.http.post("http://localhost:9000/login", model, this.options)
 								.map(this.parseResponse).subscribe(
 			(data)=>{
 				this.permissionId=data.permissao.id;
@@ -42,7 +44,7 @@ export class AuthService
 	}
 
 	logado(){
-		this.http.post("http://localhost:9000/logado", {})
+		this.http.post("http://localhost:9000/logado", {}, this.options)
 								.map(this.parseResponse).subscribe(
 			(data)=>{
 				this.router.navigate(["/", this.rotas[data.permissao.id]]);
@@ -55,7 +57,7 @@ export class AuthService
 	}
 
 	logout(){
-		var observer = this.http.post("http://localhost:9000/logout",{})
+		var observer = this.http.post("http://localhost:9000/logout",{}, this.options)
 		.map(this.parseResponse).subscribe();
 		return observer;
 	}

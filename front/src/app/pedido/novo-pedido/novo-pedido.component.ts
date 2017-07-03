@@ -15,6 +15,7 @@ export class NovoPedidoComponent implements OnInit
 		items:[],
 		mesa:""
 	};
+	error=false;
 	@Input('cliente') cliente=null;
 	@Input("mesa") mesa;
 	@Output("onSave") save:EventEmitter<Object> = new EventEmitter<Object>();
@@ -60,7 +61,7 @@ export class NovoPedidoComponent implements OnInit
 			console.log(data);
 			this.items=data;
 			this.loading=false;
-		});
+		},(er)=>this.error=true);
 	}
 	
 	salvar()
