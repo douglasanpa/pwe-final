@@ -14,7 +14,7 @@ export class AuthService
 		router.events.subscribe(event => {
 			if (event instanceof NavigationStart) 
 			{
-				this.logado();
+				//this.logado();
 			}
 		});
 	}
