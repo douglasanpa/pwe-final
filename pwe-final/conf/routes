@@ -9,6 +9,7 @@ GET     /produto                    controllers.ProdutoP.all
 POST    /login                      controllers.Login.login
 GET    /login                      controllers.Login.login
 POST    /logout                     controllers.Login.logout
+GET    /logout                     controllers.Login.logout
 GET     /logado                     controllers.Login.estaLogado
 POST     /logado                     controllers.Login.estaLogado
 GET     /pedido                     controllers.Pedidos.all

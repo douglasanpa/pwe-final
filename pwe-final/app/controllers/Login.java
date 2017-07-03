@@ -69,27 +69,30 @@ public class Login extends Controller {
     public Result estaLogado() {
         String hash = this.getHash();
         System.out.println("HASH:" + hash);
-        if(hash==null){
-            response().discardCookie("user");
-            return status(401,"Login inválido");   
-        }else{
+        if(hash != null && !hash.isEmpty()){
             Funcionario f = Funcionario.find.where()
                 .eq("hash", hash)
                 .findUnique();
             return ok(Json.toJson(f));
+        }else{
+            response().discardCookie("user");
+            return status(401,"Login inválido");   
         }
     }
 
     public Boolean isLogged() {
         String hash = this.getHash();
-        System.out.println("HASH:" + hash);
-        Funcionario f = Funcionario.find.where()
-            .eq("hash", hash)
-            .findUnique();
-        if (f==null) {
-            return false;
+        if(hash != null && !hash.isEmpty()){
+            Funcionario f = Funcionario.find.where()
+                .eq("hash", hash)
+                .findUnique();
+            if (f==null) {
+                return false;
+            }else{
+                return true;
+            }
         }else{
-            return true;
+            return false;
         }
     }
 
@@ -101,7 +104,9 @@ public class Login extends Controller {
         for (String cookieStr : Cookie ) {
             String name = cookieStr.substring(0, cookieStr.indexOf("="));  
             if (name.equals("user")){
-                return hash = cookieStr.substring(cookieStr.indexOf("=")+1);
+                hash = cookieStr.substring(cookieStr.indexOf("=")+1);
+                System.out.println("GetHASH: "+hash);
+                return hash;
             }
         }    
         } catch (Exception e) {

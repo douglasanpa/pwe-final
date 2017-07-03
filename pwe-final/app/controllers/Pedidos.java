@@ -108,35 +108,35 @@ public class Pedidos extends Controller {
     }
 
     public Result busca(String tipo) {
-        if(tipo.equals("cozinha")){
-            StatusPedido st = StatusPedido.find.where()
-            .eq("id", "1")
-            .findUnique();
-            List<Pedido> peds = Pedido.find
-            .where()
-            .eq("status", st)
-            .findList();
-            return ok(Json.toJson(peds));
-        }else if(tipo.equals("garcon")){
-            StatusPedido st = StatusPedido.find.where()
-            .eq("id", "4")
-            .findUnique();
-            List<Pedido> peds = Pedido.find
-            .where()
-            .ne("status", st)
-            .findList();
-            return ok(Json.toJson(peds));
-        }else if(tipo.equals("central")){
-            StatusPedido st = StatusPedido.find.where()
-            .eq("id", "4")
-            .findUnique();
-            List<Pedido> peds = Pedido.find
-            .where()
-            .ne("status", st)
-            .orderBy("status desc")
-            .findList();
-            return ok(Json.toJson(peds));
-        }
+            if(tipo.equals("cozinha")){
+                StatusPedido st = StatusPedido.find.where()
+                .eq("id", "1")
+                .findUnique();
+                List<Pedido> peds = Pedido.find
+                .where()
+                .eq("status", st)
+                .findList();
+                return ok(Json.toJson(peds));
+            }else if(tipo.equals("garcon")){
+                StatusPedido st = StatusPedido.find.where()
+                .eq("id", "4")
+                .findUnique();
+                List<Pedido> peds = Pedido.find
+                .where()
+                .ne("status", st)
+                .findList();
+                return ok(Json.toJson(peds));
+            }else if(tipo.equals("central")){
+                StatusPedido st = StatusPedido.find.where()
+                .eq("id", "4")
+                .findUnique();
+                List<Pedido> peds = Pedido.find
+                .where()
+                .ne("status", st)
+                .orderBy("status desc")
+                .findList();
+                return ok(Json.toJson(peds));
+            }
         
         return status(400,"Requisição inválida");
     }
