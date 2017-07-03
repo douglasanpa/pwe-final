@@ -13,10 +13,11 @@ export class AuthService
 		this.options = new RequestOptions({ withCredentials: true });
 		
 		//trava acesso a telas
-		router.events.subscribe(event => {
+		router.events.subscribe((event) => 
+		{
 			if (event instanceof NavigationStart) 
 			{
-				//this.logado();
+				this.logado();
 			}
 		});
 	}
@@ -37,6 +38,7 @@ export class AuthService
 								.map(this.parseResponse).subscribe(
 			(data)=>{
 				this.permissionId=data.permissao.id;
+				console.log(this.permissionId)
 				this.router.navigate(["/", this.rotas[data.permissao.id]]);
 				this.loginObserver.next(data);
 			});
@@ -47,6 +49,7 @@ export class AuthService
 		this.http.post("http://localhost:9000/logado", {}, this.options)
 								.map(this.parseResponse).subscribe(
 			(data)=>{
+				console.log(this.permissionId)
 				this.router.navigate(["/", this.rotas[data.permissao.id]]);
 				this.checkloginObserver.next(data);
 			}
