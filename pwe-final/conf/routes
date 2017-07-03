@@ -7,6 +7,7 @@ GET     /                           controllers.HomeController.index
 GET     /produto/estoque            controllers.ProdutoP.estoque
 GET     /produto                    controllers.ProdutoP.all
 POST    /login                      controllers.Login.login
+GET    /login                      controllers.Login.login
 POST    /logout                     controllers.Login.logout
 GET     /logado                     controllers.Login.estaLogado
 POST     /logado                     controllers.Login.estaLogado

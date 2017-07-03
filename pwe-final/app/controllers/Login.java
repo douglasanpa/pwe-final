@@ -15,7 +15,6 @@ import java.text.*;
 
 import play.libs.Json;
 
-
 /**
  * This controller contains an action to handle HTTP requests
  * to the application's home page.
@@ -32,11 +31,11 @@ public class Login extends Controller {
                 .eq("senha", senha)
                 .findUnique();
             if (f==null) {
-                //response().discardCookie("user");
+                response().discardCookie("user");
                 return status(401,"Login inválido");    
             }else{
                 Date date = new Date();
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
                 String formattedDate = sdf.format(date);
                 String hash = this.MD5(formattedDate);
                 System.out.println("HASH LOGANDO : " + hash);
@@ -45,11 +44,15 @@ public class Login extends Controller {
                 Funcionario f2 = Funcionario.find.where()
                 .eq("hash", hash)
                 .findUnique();
-                response().setCookie("user", hash);
+                response().setCookie("user", hash, 3600);
                 return ok(Json.toJson(f));
             }    
         } catch (Exception e) {
-            //response().discardCookie("user");
+            String Cookie[] = request().headers().get("Cookie");
+                for (String cookieStr : Cookie ) {
+                    System.out.println(cookieStr);
+                }
+            response().discardCookie("user");
             return status(401,"Login inválido");    
         }
         
@@ -59,10 +62,10 @@ public class Login extends Controller {
             .eq("hash", this.getHash())
             .findUnique();
         if (f==null) {
-            //response().discardCookie("user");
+            response().discardCookie("user");
             return ok("OK");
         }else{
-            //response().discardCookie("user");
+            response().discardCookie("user");
             return ok("OK");
         }
     }
@@ -71,7 +74,7 @@ public class Login extends Controller {
         String hash = this.getHash();
         System.out.println("HASH:" + hash);
         if(hash==null){
-            //response().discardCookie("user");
+            response().discardCookie("user");
             return status(401,"Login inválido");   
         }else{
             Funcionario f = Funcionario.find.where()
@@ -98,16 +101,13 @@ public class Login extends Controller {
     private String getHash(){
         String Cookie[] = request().headers().get("Cookie");
         String hash =  "";
-        System.out.println("getHash: "+hash);
         try {
-            for (String cookieStr : Cookie ) {
-                String name = cookieStr.substring(0, cookieStr.indexOf("="));  
-                if (name.equals("user")){
-                    hash = cookieStr.substring(cookieStr.indexOf("=")+1);
-                    System.out.println("getHash: "+hash);
-                    return hash;
-                }
+        for (String cookieStr : Cookie ) {
+            String name = cookieStr.substring(0, cookieStr.indexOf("="));  
+            if (name.equals("user")){
+                return hash = cookieStr.substring(cookieStr.indexOf("=")+1);
             }
+        }    
         } catch (Exception e) {
             return null;
         }
