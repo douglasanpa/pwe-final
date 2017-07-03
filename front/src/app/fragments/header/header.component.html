@@ -15,9 +15,8 @@
             <!-- <li><a routerLink="/cozinha" >Cozinha</a></li> -->
             <!-- <li><a routerLink="/garcom" >Garcom</a></li> -->
 
-            <li><a routerLink="/login" >
-              {{logado?'Logout':'Login'}}
-            </a></li>
+            <li *ngIf="logado"><a class='btn' (click)="deslogar()">Logout</a></li>
+
           </ul>
         </div>
       </div>

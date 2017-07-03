@@ -24,7 +24,7 @@ export class AuthService
 	
 	loginObserver = new Subject();
 	checkloginObserver = new Subject();
-	
+	logoutObserver = new Subject();
 	permissionId=-1;
 	
 	private parseResponse(response: Response)
@@ -60,8 +60,8 @@ export class AuthService
 	}
 
 	logout(){
-		var observer = this.http.post("http://localhost:9000/logout",{}, this.options)
-		.map(this.parseResponse).subscribe();
-		return observer;
+		this.http.post("http://localhost:9000/logout",{}, this.options)
+		.map(this.parseResponse).subscribe((data)=>{this.logoutObserver.next();this.logado()});
+		return this.logoutObserver;
 	}
 }
