@@ -48,10 +48,6 @@ public class Login extends Controller {
                 return ok(Json.toJson(f));
             }    
         } catch (Exception e) {
-            String Cookie[] = request().headers().get("Cookie");
-                for (String cookieStr : Cookie ) {
-                    System.out.println(cookieStr);
-                }
             response().discardCookie("user");
             return status(401,"Login inválido");    
         }
